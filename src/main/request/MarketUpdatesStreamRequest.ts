@@ -3,11 +3,7 @@ export class MarketUpdatesStreamRequest {
     private watchableMarkets: string[];
 
     constructor( watchableMarkets?: string[] ) {
-
-        if( watchableMarkets !== undefined ) {
-            this.watchableMarkets = watchableMarkets;
-        }
-
+         this.watchableMarkets = watchableMarkets;
     }
 
     public getWatchableMarkets(): string[] {
