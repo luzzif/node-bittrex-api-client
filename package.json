@@ -1,13 +1,16 @@
 {
     "name": "bittrex-api-client",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "A wrapper which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
+    "main": "lib/BittrexApiClient.js",
+    "types": "src/main/index.d.ts",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
     },
     "scripts": {
-        "postinstall": "tsc",
+        "build": "tsc",
+        "prepublish": "npm run build",
         "test": "mocha -r ts-node/register src/test/**/*.ts"
     },
     "repository": {

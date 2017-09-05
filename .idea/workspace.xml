@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56ae3f2d-10af-4965-a90c-2c397e90ae85" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/index.d.ts" afterPath="$PROJECT_DIR$/src/main/index.d.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="$PROJECT_DIR$/tsconfig.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +23,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="72">
+              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -84,8 +87,8 @@
       <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="216">
+              <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -102,10 +105,10 @@
         </entry>
       </file>
       <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.d.ts">
+        <entry file="file://$PROJECT_DIR$/src/main/index.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/module-class.d.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/src/test/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/index.ts" />
         <option value="$PROJECT_DIR$/src/main/request/BuyLimitRequest.ts" />
@@ -174,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/test/BittrexApiClient.ts" />
         <option value="$PROJECT_DIR$/index.d.ts" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/tsconfig.json" />
       </list>
     </option>
   </component>
@@ -268,9 +271,9 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/response" />
-      <recent name="$PROJECT_DIR$/src/main" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -296,7 +299,7 @@
       <option name="presentableId" value="Default" />
       <updated>1504591521501</updated>
       <workItem from="1504591522711" duration="6268000" />
-      <workItem from="1504597801296" duration="15874000" />
+      <workItem from="1504597801296" duration="17796000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1504601859862</created>
@@ -452,11 +455,25 @@
       <option name="project" value="LOCAL" />
       <updated>1504620114823</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Version 0.0.8">
+      <created>1504620288757</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1504620288757</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Use strict in TypeScript transpilation">
+      <created>1504621375854</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1504621375854</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22142000" />
+    <option name="totallyTimeSpent" value="24064000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1043" extended-state="6" />
@@ -510,7 +527,9 @@
     <MESSAGE value="Version 0.0.7" />
     <MESSAGE value="Update package exports" />
     <MESSAGE value="Implement limit buy order" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement limit buy order" />
+    <MESSAGE value="Version 0.0.8" />
+    <MESSAGE value="Use strict in TypeScript transpilation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Use strict in TypeScript transpilation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -568,7 +587,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.d.ts">
+    <entry file="file://$PROJECT_DIR$/src/main/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
@@ -707,22 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1404">
-          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/response/Fill.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -775,18 +778,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.d.ts">
+    <entry file="file://$PROJECT_DIR$/src/main/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1404">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        <state relative-caret-position="72">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
           <folding />
         </state>
       </provider>
