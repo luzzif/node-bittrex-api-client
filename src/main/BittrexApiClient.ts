@@ -6,8 +6,8 @@ import * as SignalR from "signalr-client";
 import { URL } from "url";
 import { MarketUpdatesStreamRequest } from "./request/MarketUpdatesStreamRequest";
 import { MarketUpdate } from "./response/MarketUpdate";
-import {BuyLimitRequest} from "./request/BuyLimitRequest";
-import {BuyLimitResponse} from "./response/BuyLimitResponse";
+import { BuyLimitRequest } from "./request/BuyLimitRequest";
+import { BuyLimitResponse } from "./response/BuyLimitResponse";
 
 export class BittrexApiClient {
 
