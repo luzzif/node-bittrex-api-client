@@ -1,5 +1,5 @@
 import { MarketSummaryRequest } from "../main/request/MarketSummaryRequest";
-import { BittrexApi } from "../main/BittrexApi";
+import { BittrexApiClient } from "../main/BittrexApiClient";
 import { MarketSummaryResponse } from "../main/response/MarketSummaryResponse";
 import * as Assert from "assert";
 import {} from "mocha";
@@ -18,7 +18,7 @@ describe( "BittrexApi", () => {
         Assert.fail( "API secret is undefined. Define your API secret as an environmental variable named BITTREX_API_SECRET" );
     }
 
-    let bittrexApi: BittrexApi = new BittrexApi(
+    let bittrexApi: BittrexApiClient = new BittrexApiClient(
         apiKey,
         apiSecret
     );

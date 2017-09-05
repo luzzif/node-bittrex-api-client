@@ -1,1 +1,1 @@
-export { BittrexApi } from "./src/main/BittrexApi";
+export { BittrexApiClient } from "./src/main/BittrexApiClient";

@@ -7,7 +7,7 @@ import { URL } from "url";
 import { MarketUpdatesStreamRequest } from "./request/MarketUpdatesStreamRequest";
 import { MarketUpdate } from "./response/MarketUpdate";
 
-export class BittrexApi {
+export class BittrexApiClient {
 
     private static readonly WEB_SOCKET_HOST: string = "wss://socket.bittrex.com/signalr";
     private static readonly WEB_SOCKET_HUB: string = "CoreHub";
@@ -44,16 +44,16 @@ export class BittrexApi {
     public getMarketUpdatesStream( marketUpdatesStreamRequest: MarketUpdatesStreamRequest, callback: ( marketUpdates: MarketUpdate[] ) => any ): void {
 
         let websocketClient: SignalR.client = new SignalR.client(
-            BittrexApi.WEB_SOCKET_HOST,
-            BittrexApi.WEB_SOCKET_HUB
+            BittrexApiClient.WEB_SOCKET_HOST,
+            BittrexApiClient.WEB_SOCKET_HUB
         );
         let watchableMarkets: string[] = marketUpdatesStreamRequest.getWatchableMarkets();
         websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
                 websocketClient.call(
-                    BittrexApi.WEB_SOCKET_HUB,
-                    BittrexApi.WEB_SOCKET_HUB_SUBSCRIBE_DELTAS,
+                    BittrexApiClient.WEB_SOCKET_HUB,
+                    BittrexApiClient.WEB_SOCKET_HUB_SUBSCRIBE_DELTAS,
                     watchableMarket
                 );
             }
@@ -92,16 +92,16 @@ export class BittrexApi {
     public makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
-            BittrexApi.API_BASE_URL_PATH + operation,
-            BittrexApi.API_BASE_URL_ROOT
+            BittrexApiClient.API_BASE_URL_PATH + operation,
+            BittrexApiClient.API_BASE_URL_ROOT
         );
 
         apiEndpointUrl.searchParams.append(
-            BittrexApi.API_API_KEY_PARAMETER,
+            BittrexApiClient.API_API_KEY_PARAMETER,
             this.apiKey
         );
         apiEndpointUrl.searchParams.append(
-            BittrexApi.API_TIMESTAMP_PARAMETER,
+            BittrexApiClient.API_TIMESTAMP_PARAMETER,
             new Date().getTime().toString()
         );
 
