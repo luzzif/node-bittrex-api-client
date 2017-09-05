@@ -2,6 +2,7 @@ import { MarketSummaryRequest } from "../main/request/MarketSummaryRequest";
 import { BittrexApi } from "../main/BittrexApi";
 import { MarketSummaryResponse } from "../main/response/MarketSummaryResponse";
 import * as Assert from "assert";
+import "mocha";
 import { MarketUpdatesStreamRequest } from "../main/request/MarketUpdatesStreamRequest";
 import { MarketUpdate } from "../main/response/MarketUpdate";
 
