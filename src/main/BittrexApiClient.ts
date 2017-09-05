@@ -76,7 +76,7 @@ export class BittrexApiClient {
 
                 console.log( updateJson );
                 if( updateJson.M !== "updateExchangeState" ) {
-                    return new Promise( () => {} );
+                    return;
                 }
                 for( let marketUpdateJson of updateJson.A ) {
                     marketUpdates.push( new MarketUpdate( marketUpdateJson ) );
