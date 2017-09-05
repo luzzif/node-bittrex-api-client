@@ -6,6 +6,8 @@ import * as SignalR from "signalr-client";
 import { URL } from "url";
 import { MarketUpdatesStreamRequest } from "./request/MarketUpdatesStreamRequest";
 import { MarketUpdate } from "./response/MarketUpdate";
+import {BuyLimitRequest} from "./request/BuyLimitRequest";
+import {BuyLimitResponse} from "./response/BuyLimitResponse";
 
 export class BittrexApiClient {
 
@@ -33,6 +35,24 @@ export class BittrexApiClient {
         )
         .then( ( jsonResponse: any ) => {
             return new MarketSummaryResponse( jsonResponse );
+        } )
+        .catch( ( errorMessage: string ): null => {
+            console.log( "Error calling Bittrex API: " + errorMessage );
+            return null;
+        } );
+
+    }
+
+    public buyLimit( buyLimitRequest: BuyLimitRequest ): Promise< BuyLimitResponse > {
+
+        return this.makeRequest(
+            "/market/buylimit",
+            [ "market", buyLimitRequest.getMarket() ],
+            [ "quantity", buyLimitRequest.getQuantity().toString() ],
+            [ "rate", buyLimitRequest.getPrice().toString() ]
+        )
+        .then( ( jsonResponse: any ) => {
+            return new BuyLimitResponse( jsonResponse );
         } )
         .catch( ( errorMessage: string ): null => {
             console.log( "Error calling Bittrex API: " + errorMessage );

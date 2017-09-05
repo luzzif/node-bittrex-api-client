@@ -5,6 +5,8 @@ import * as Assert from "assert";
 import {} from "mocha";
 import { MarketUpdatesStreamRequest } from "../main/request/MarketUpdatesStreamRequest";
 import { MarketUpdate } from "../main/response/MarketUpdate";
+import {BuyLimitRequest} from "../main/request/BuyLimitRequest";
+import {BuyLimitResponse} from "../main/response/BuyLimitResponse";
 
 describe( "BittrexApi", () => {
 
@@ -39,6 +41,27 @@ describe( "BittrexApi", () => {
 
         } )
     } );
+
+    describe( "#buyLimit()", () => {
+        it( "Should return a buy limit response, given a specific market, quantity and rate", () => {
+
+            let buyLimitrequest: BuyLimitRequest = new BuyLimitRequest();
+            buyLimitrequest.setMarket( "BTC-LTC" );
+            buyLimitrequest.setQuantity( Number.MAX_VALUE );
+            buyLimitrequest.setPrice( -1 );
+            bittrexApi.buyLimit(
+                buyLimitrequest
+            )
+            .then( ( buyLimitResponse: BuyLimitResponse ) => {
+                Assert.ok( buyLimitResponse instanceof BuyLimitResponse );
+            } )
+            .catch( ( errorMessage: string ) => {
+                Assert.fail( "Bittrex API call failed. Returned message: " + errorMessage );
+            } );
+
+        } )
+    } );
+
     describe( "#getMarketUpdatesStream()", () => {
         it( "Should return an array of updates, given one or more specific markets", () => {
 
