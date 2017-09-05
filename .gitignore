@@ -6,3 +6,6 @@ build
 
 ### Dependencies ###
 node_modules/
+
+### Misc ###
+.idea
