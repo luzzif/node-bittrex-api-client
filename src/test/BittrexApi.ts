@@ -32,6 +32,9 @@ describe( "BittrexApi", () => {
             )
             .then( ( marketSummaryResponse: MarketSummaryResponse ) => {
                  Assert.ok( marketSummaryResponse instanceof MarketSummaryResponse );
+            } )
+            .catch( ( errorMessage: string ) => {
+                Assert.fail( "Bittrex API call failed. Returned message: " + errorMessage );
             } );
 
         } )

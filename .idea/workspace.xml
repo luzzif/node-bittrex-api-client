@@ -42,8 +42,8 @@
       <file leaf-file-name="BittrexApi.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/BittrexApi.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+            <state relative-caret-position="342">
+              <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
               <folding>
                 <element signature="e#0#76#0" expanded="true" />
               </folding>
@@ -290,7 +290,7 @@
       <option name="presentableId" value="Default" />
       <updated>1504591521501</updated>
       <workItem from="1504591522711" duration="6268000" />
-      <workItem from="1504597801296" duration="9070000" />
+      <workItem from="1504597801296" duration="9181000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1504601859862</created>
@@ -376,11 +376,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504607043914</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix test description case">
+      <created>1504607329630</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1504607329630</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15338000" />
+    <option name="totallyTimeSpent" value="15449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1043" extended-state="6" />
@@ -424,7 +431,8 @@
     <MESSAGE value="Import Mocha" />
     <MESSAGE value="Version 0.0.4" />
     <MESSAGE value="Separate build from test execution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Separate build from test execution" />
+    <MESSAGE value="Fix test description case" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix test description case" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -681,8 +689,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/BittrexApi.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+        <state relative-caret-position="342">
+          <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
           <folding>
             <element signature="e#0#76#0" expanded="true" />
           </folding>
