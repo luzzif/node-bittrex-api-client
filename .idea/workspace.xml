@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56ae3f2d-10af-4965-a90c-2c397e90ae85" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/bittrex-api-wrapper.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/BittrexApi.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/module-class.d.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/request/MarketSummaryRequest.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/request/MarketUpdatesStreamRequest.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/response/Buy.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/response/Fill.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/response/MarketSummaryResponse.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/response/MarketUpdate.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/response/Sell.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/BittrexApi.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tsconfig.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/bittrex-api-wrapper.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,7 +19,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
@@ -67,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="180">
+              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -176,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/main/bittrex/request/MarketSummaryRequest.ts" />
         <option value="$PROJECT_DIR$/src/main/request/MarketSummaryRequest.ts" />
         <option value="$PROJECT_DIR$/src/main/request/MarketUpdatesStreamRequest.ts" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/model/MarketUpdate.ts" />
         <option value="$PROJECT_DIR$/src/main/model/Buy.ts" />
         <option value="$PROJECT_DIR$/src/main/response/Sell.ts" />
@@ -187,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/main/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/src/test/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -308,12 +294,27 @@
       <option name="presentableId" value="Default" />
       <updated>1504591521501</updated>
       <workItem from="1504591522711" duration="6268000" />
-      <workItem from="1504597801296" duration="4040000" />
+      <workItem from="1504597801296" duration="4162000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1504601859862</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1504601859862</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add .idea to .gitignore">
+      <created>1504601906834</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1504601906834</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10308000" />
+    <option name="totallyTimeSpent" value="10430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1043" extended-state="6" />
@@ -342,6 +343,13 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Add .idea to .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add .idea to .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -584,14 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1404">
@@ -606,6 +606,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="65" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding />
         </state>
       </provider>
