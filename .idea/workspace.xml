@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56ae3f2d-10af-4965-a90c-2c397e90ae85" name="Default" comment="Remove .idea directory">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+    <list default="true" id="56ae3f2d-10af-4965-a90c-2c397e90ae85" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/module-class.d.ts" afterPath="$PROJECT_DIR$/module-class.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +22,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+            <state relative-caret-position="36">
+              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -89,14 +91,14 @@
             <state relative-caret-position="-1404">
               <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
               <folding>
-                <marker date="1504597482275" expanded="true" signature="11700:11710" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
+                <marker date="1504602672683" expanded="true" signature="11724:11734" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="module-class.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/module-class.d.ts">
+        <entry file="file://$PROJECT_DIR$/module-class.d.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
               <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
@@ -170,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/main/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/src/test/BittrexApi.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/module-class.d.ts" />
         <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
@@ -265,6 +268,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/response" />
       <recent name="$PROJECT_DIR$/src/main" />
     </key>
@@ -292,7 +296,7 @@
       <option name="presentableId" value="Default" />
       <updated>1504591521501</updated>
       <workItem from="1504591522711" duration="6268000" />
-      <workItem from="1504597801296" duration="4570000" />
+      <workItem from="1504597801296" duration="4976000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1504601859862</created>
@@ -315,11 +319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504601982342</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update package name due to duplicate on npm registry">
+      <created>1504602401755</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1504602401755</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10838000" />
+    <option name="totallyTimeSpent" value="11244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1043" extended-state="6" />
@@ -355,7 +366,8 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Add .idea to .gitignore" />
     <MESSAGE value="Remove .idea directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove .idea directory" />
+    <MESSAGE value="Update package name due to duplicate on npm registry" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update package name due to duplicate on npm registry" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -410,12 +422,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
           <folding>
-            <marker date="1504597482275" expanded="true" signature="11700:11710" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
+            <marker date="1504602672683" expanded="true" signature="11724:11734" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/module-class.d.ts">
+    <entry file="file://$PROJECT_DIR$/module-class.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
@@ -546,14 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/module-class.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/response/MarketUpdatesStreamResponse.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -598,16 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1404">
-          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding>
-            <marker date="1504597482275" expanded="true" signature="11700:11710" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -616,10 +610,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module-class.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1404">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding>
+            <marker date="1504602672683" expanded="true" signature="11724:11734" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+        <state relative-caret-position="36">
+          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
