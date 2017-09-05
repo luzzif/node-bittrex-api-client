@@ -23,7 +23,7 @@ describe( "BittrexApi", () => {
         apiSecret
     );
     describe( "#getMarketSummary()", () => {
-        it( "should return a market summary response, given a specific market", () => {
+        it( "Should return a market summary response, given a specific market", () => {
 
             let marketSummaryRequest: MarketSummaryRequest = new MarketSummaryRequest();
             marketSummaryRequest.setName( "BTC-LTC" );
@@ -37,7 +37,7 @@ describe( "BittrexApi", () => {
         } )
     } );
     describe( "#getMarketUpdatesStream()", () => {
-        it( "should return an array of updates, given one or more specific markets", () => {
+        it( "Should return an array of updates, given one or more specific markets", () => {
 
             let marketUpdatesStreamRequest: MarketUpdatesStreamRequest = new MarketUpdatesStreamRequest();
             marketUpdatesStreamRequest.setWatchableMarkets( [ "BTC-LTC" ] );
