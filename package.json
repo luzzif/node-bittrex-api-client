@@ -3,7 +3,7 @@
     "version": "0.0.10",
     "description": "A wrapper which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
     "main": "lib/BittrexApiClient.js",
-    "types": "src/main/index.d.ts",
+    "types": "lib/index.js",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
