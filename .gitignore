@@ -1,0 +1,8 @@
+### Logs ###
+npm-debug.log
+
+### Transpilation results ###
+build
+
+### Dependencies ###
+node_modules/

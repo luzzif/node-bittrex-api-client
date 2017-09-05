@@ -1,0 +1,38 @@
+{
+    "name": "bittrex-api-wrapper",
+    "version": "0.0.1",
+    "description": "A wrapper which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
+    "engines": {
+        "node": "8.4.0",
+        "npm": "5.3.0"
+    },
+    "scripts": {
+        "postinstall": "tsc",
+        "test": "mocha build/test/BittrexApi.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/luzzif/bittrex-api-wrapper.git"
+    },
+    "keywords": [
+        "bittrex",
+        "api",
+        "wrapper"
+    ],
+    "author": "luzzif",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/luzzif/bittrex-api-wrapper/issues"
+    },
+    "homepage": "https://github.com/luzzif/bittrex-api-wrapper#readme",
+    "dependencies": {
+        "crypto-js": "^3.1.9-1",
+        "signalr-client": "^0.0.17"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^8.0.26",
+        "mocha": "^3.5.0",
+        "typescript": "^2.5.2"
+    }
+}
