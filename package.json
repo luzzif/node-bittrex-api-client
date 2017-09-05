@@ -8,7 +8,7 @@
     },
     "scripts": {
         "postinstall": "tsc",
-        "test": "mocha lib/test/BittrexApi.js"
+        "test": "mocha -r ts-node/register src/test/**/*.ts"
     },
     "repository": {
         "type": "git",
@@ -33,6 +33,7 @@
         "@types/mocha": "^2.2.42",
         "@types/node": "^8.0.26",
         "mocha": "^3.5.0",
+        "ts-node": "^3.3.0",
         "typescript": "^2.5.2"
     }
 }
