@@ -1,12 +1,15 @@
-export { BuyLimitRequest } from "./request/BuyLimitRequest";
-export { MarketSummaryRequest } from "./request/MarketSummaryRequest";
-export { MarketUpdatesStreamRequest } from "./request/MarketUpdatesStreamRequest";
+export { Condition } from "./enum/Condition";
+export { FillType } from "./enum/FillType";
+export { OrderBookType } from "./enum/OrderBookType";
+export { OrderType } from "./enum/OrderType";
 
-export { Buy } from "./response/Buy";
-export { BuyLimitResponse } from "./response/BuyLimitResponse";
-export { Fill } from "./response/Fill";
-export { MarketSummaryResponse } from "./response/MarketSummaryResponse";
-export { MarketUpdate } from "./response/MarketUpdate";
-export { Sell } from "./response/Sell";
+export { Balance } from "./model/Balance";
+export { Currency } from "./model/Currency";
+export { Market } from "./model/Market";
+export { MarketSummary } from "./model/MarketSummary";
+export { OpenOrder } from "./model/OpenOrder";
+export { Order } from "./model/Order";
+export { Ticker } from "./model/Ticker";
+export { Trade } from "./model/Trade";
 
 export { BittrexApiClient } from "./BittrexApiClient";
