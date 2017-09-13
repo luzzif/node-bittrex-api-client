@@ -5,6 +5,7 @@ export { OrderType } from "./enum/OrderType";
 
 export { Balance } from "./model/Balance";
 export { Currency } from "./model/Currency";
+export { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 export { Market } from "./model/Market";
 export { MarketSummary } from "./model/MarketSummary";
 export { OpenOrder } from "./model/OpenOrder";
