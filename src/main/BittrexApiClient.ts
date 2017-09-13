@@ -12,6 +12,7 @@ import { Trade } from "./model/Trade";
 import { OrderType } from "./enum/OrderType";
 import { OpenOrder } from "./model/OpenOrder";
 import { Balance } from "./model/Balance";
+import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 
 export class BittrexApiClient {
 
@@ -315,12 +316,13 @@ export class BittrexApiClient {
 
     }
 
-    public getMarketUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates ) => any ): void {
+    public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
 
         let websocketClient: SignalR.client = new SignalR.client(
             BittrexApiClient.WEB_SOCKET_HOST,
-            BittrexApiClient.WEB_SOCKET_HUB
+            [ BittrexApiClient.WEB_SOCKET_HUB ]
         );
+
         websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
@@ -333,31 +335,34 @@ export class BittrexApiClient {
 
         };
 
-        websocketClient.serviceHandlers.messageReceived = ( message: any ) => {
+        websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
 
-            // TODO: Implement
-            // if( message.type !== "utf8" ) {
-            //     return;
-            // }
-            // message = JSON.parse( message.utf8Data );
-            // let updates = message.M;
-            // if( updates === undefined || updates.length === 0 ) {
-            //     return;
-            // }
-            //
-            // let marketUpdates: MarketUpdate[] = [];
-            // for( let updateJson of message.M ) {
-            //
-            //     console.log( updateJson );
-            //     if( updateJson.M !== "updateExchangeState" ) {
-            //         return;
-            //     }
-            //     for( let marketUpdateJson of updateJson.A ) {
-            //         marketUpdates.push( new MarketUpdate( marketUpdateJson ) );
-            //     }
-            //
-            // }
-            callback( [] );
+            if( messageJson.type !== "utf8" ) {
+                return;
+            }
+            messageJson = JSON.parse( messageJson.utf8Data );
+            let updatesJson = messageJson.M;
+            if( updatesJson === undefined || updatesJson.length === 0 ) {
+                return;
+            }
+
+            let exchangeStateUpdates: ExchangeStateUpdate[] = [];
+            for( let updateJson of updatesJson ) {
+
+                if( updateJson.M === "updateExchangeState" ) {
+
+                    for( let exchangeStateUpdateJson of updateJson.A ) {
+                        exchangeStateUpdates.push(
+                            new ExchangeStateUpdate(
+                                exchangeStateUpdateJson
+                            )
+                        );
+                    }
+
+                }
+
+            }
+            callback( exchangeStateUpdates );
 
         };
 

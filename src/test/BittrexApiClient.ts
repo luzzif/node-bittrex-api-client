@@ -11,6 +11,7 @@ import { OrderType } from "../main/enum/OrderType";
 import { BittrexApiClient } from "../main/BittrexApiClient";
 import { OpenOrder } from "../main/model/OpenOrder";
 import { Balance } from "../main/model/Balance";
+import { ExchangeStateUpdate } from "../main/model/ExchangeStateUpdate";
 
 describe( "BittrexApi", () => {
 
@@ -258,6 +259,16 @@ describe( "BittrexApi", () => {
             } )
             .catch( ( errorMessage: string ): void => {
                 Assert.fail( "Bittrex API call failed. Returned message: " + errorMessage );
+            } );
+
+        } )
+    } );
+
+    describe( "withdraw()", (): void => {
+        it( "Should return a string representing the withdrawal ID", (): void => {
+
+            bittrexApi.getExchangeStateUpdatesStream( [ "BTC-LTC" ], ( exchangeUpdates: ExchangeStateUpdate[] ): void => {
+                Assert.ok( exchangeUpdates !== null && exchangeUpdates !== undefined );
             } );
 
         } )
