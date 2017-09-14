@@ -3,14 +3,14 @@ import { OrderType } from "../enum/OrderType";
 
 export class ExchangeStateUpdate {
 
-    private _timestamp: Date;
+    private _nounce: number;
     private _name: string;
     private _placedOrders: Order[];
     private _fills: Order[];
 
     constructor( json: any ) {
 
-        this._timestamp = new Date( json.Nounce );
+        this._nounce = json.Nounce;
         this._name = json.MarketName;
 
         this._placedOrders = [];
@@ -37,12 +37,12 @@ export class ExchangeStateUpdate {
 
     }
 
-    get timestamp(): Date {
-        return this._timestamp;
+    get nounce(): number {
+        return this._nounce;
     }
 
-    set timestamp(value: Date) {
-        this._timestamp = value;
+    set nounce( value: number ) {
+        this._nounce = value;
     }
 
     get name(): string {
