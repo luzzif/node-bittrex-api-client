@@ -362,6 +362,9 @@ export class BittrexApiClient {
                 }
 
             }
+            if( exchangeStateUpdates.length === 0 ) {
+                return;
+            }
             callback( exchangeStateUpdates );
 
         };
