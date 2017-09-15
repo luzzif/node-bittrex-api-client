@@ -165,10 +165,10 @@ describe( "BittrexApi", () => {
 
 
     let orderId: string;
-    describe( "buyLimit()", (): void => {
+    describe( "buyWithLimit()", (): void => {
         it( "Should return the just-placed order ID", (): void => {
 
-            bittrexApi.buyLimit( "BTC-LTC", 1, Number.MAX_VALUE )
+            bittrexApi.buyWithLimit( "BTC-LTC", 1, Number.MAX_VALUE )
             .then( ( placedOrderId: string ): void => {
                 orderId = placedOrderId;
                 Assert.ok( placedOrderId !== null && placedOrderId !== undefined );
@@ -180,10 +180,24 @@ describe( "BittrexApi", () => {
         } )
     } );
 
-    describe( "cancel()", (): void => {
+    describe( "sellWithLimit()", (): void => {
+        it( "Should return the just-placed order ID", (): void => {
+
+            bittrexApi.sellWithLimit( "BTC-LTC", 1, Number.MAX_VALUE )
+                .then( ( placedOrderId: string ): void => {
+                    Assert.ok( placedOrderId !== null && placedOrderId !== undefined );
+                } )
+                .catch( ( errorMessage: string ): void => {
+                    Assert.fail( "Bittrex API call failed. Returned message: " + errorMessage );
+                } );
+
+        } )
+    } );
+
+    describe( "cancelOrder()", (): void => {
         it( "Should return true when the order is successfully canceled", (): void => {
 
-            bittrexApi.cancel( orderId )
+            bittrexApi.cancelOrder( orderId )
             .then( (): void => {
                 Assert.ok( true );
             } )

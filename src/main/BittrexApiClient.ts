@@ -188,7 +188,7 @@ export class BittrexApiClient {
 
     }
 
-    public buyLimit( market: string, quantity: number, rate: number ): Promise< string > {
+    public buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
         return this.makeRequest(
             "/market/buylimit",
@@ -206,10 +206,28 @@ export class BittrexApiClient {
 
     }
 
-    public cancel( orderId: string ): Promise< boolean > {
+    public sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
         return this.makeRequest(
-            "/market/cancel",
+            "/market/selllimit",
+            [ "market", market ],
+            [ "quantity", quantity.toString() ],
+            [ "rate", rate.toString() ]
+        )
+            .then( ( orderIdJson: any ): string => {
+                return orderIdJson.uuid;
+            } )
+            .catch( ( errorMessage: string ): null => {
+                console.log( "Error calling Bittrex API: " + errorMessage );
+                return null;
+            } );
+
+    }
+
+    public cancelOrder( orderId: string ): Promise< boolean > {
+
+        return this.makeRequest(
+            "/market/cancelOrder",
             [ "uuid", orderId ]
         )
         .then( (): boolean => {
