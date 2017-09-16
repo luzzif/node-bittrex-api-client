@@ -16,14 +16,6 @@ import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 
 export class BittrexApiClient {
 
-    private static readonly WEB_SOCKET_HOST: string = "wss://socket.bittrex.com/signalr";
-    private static readonly WEB_SOCKET_HUB: string = "CoreHub";
-    private static readonly WEB_SOCKET_HUB_SUBSCRIBE_DELTAS: string = "SubscribeToExchangeDeltas";
-    private static readonly API_BASE_URL_PATH = "/api/v1.1/";
-    private static readonly API_BASE_URL_ROOT = "https://www.bittrex.com/";
-    private static readonly API_API_KEY_PARAMETER = "apikey";
-    private static readonly API_TIMESTAMP_PARAMETER = "nonce";
-
     private apiKey: string;
     private apiSecret: string;
 
@@ -337,16 +329,16 @@ export class BittrexApiClient {
     public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
 
         let websocketClient: SignalR.client = new SignalR.client(
-            BittrexApiClient.WEB_SOCKET_HOST,
-            [ BittrexApiClient.WEB_SOCKET_HUB ]
+            "wss://socket.bittrex.com/signalr",
+            [ "CoreHub" ]
         );
 
         websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
                 websocketClient.call(
-                    BittrexApiClient.WEB_SOCKET_HUB,
-                    BittrexApiClient.WEB_SOCKET_HUB_SUBSCRIBE_DELTAS,
+                    "CoreHub",
+                    "SubscribeToExchangeDeltas",
                     watchableMarket
                 );
             }
@@ -392,16 +384,16 @@ export class BittrexApiClient {
     private makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
-            BittrexApiClient.API_BASE_URL_PATH + operation,
-            BittrexApiClient.API_BASE_URL_ROOT
+            "/api/v1.1/" + operation,
+            "https://www.bittrex.com/"
         );
 
         apiEndpointUrl.searchParams.append(
-            BittrexApiClient.API_API_KEY_PARAMETER,
+            "apikey",
             this.apiKey
         );
         apiEndpointUrl.searchParams.append(
-            BittrexApiClient.API_TIMESTAMP_PARAMETER,
+            "nonce",
             new Date().getTime().toString()
         );
 
