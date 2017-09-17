@@ -7,7 +7,7 @@ export class Order {
     private _rate: number;
 
     constructor( json: any, type?: OrderType ) {
-        this._type = type === undefined ? json.OrderType : type;
+        this._type = type === undefined ? OrderType[ json.OrderType as string ] : type;
         this._quantity = json.Quantity;
         this._rate = json.Rate;
     }
