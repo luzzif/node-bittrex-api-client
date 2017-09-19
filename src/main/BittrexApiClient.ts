@@ -381,10 +381,6 @@ export class BittrexApiClient {
 
     }
 
-    public disconnectFromWebSocket(): void {
-        this.websocketClient = null;
-    }
-
     private makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
