@@ -13,6 +13,7 @@ import { OrderType } from "./enum/OrderType";
 import { OpenOrder } from "./model/OpenOrder";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
+import { isNullOrUndefined } from "util";
 
 export class BittrexApiClient {
 
@@ -21,6 +22,10 @@ export class BittrexApiClient {
     private websocketClient: SignalR.client;
 
     constructor( apiKey: string, apiSecret: string ) {
+
+        if( isNullOrUndefined( apiKey ) || isNullOrUndefined( apiSecret ) ) {
+            throw new Error( "API key and API secret cannot be undefined or null" );
+        }
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
     }
