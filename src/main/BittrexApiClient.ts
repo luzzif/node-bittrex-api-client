@@ -18,6 +18,7 @@ export class BittrexApiClient {
 
     private apiKey: string;
     private apiSecret: string;
+    private websocketClient: SignalR.client;
 
     constructor( apiKey: string, apiSecret: string ) {
         this.apiKey = apiKey;
@@ -328,15 +329,15 @@ export class BittrexApiClient {
 
     public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
 
-        let websocketClient: SignalR.client = new SignalR.client(
+        this.websocketClient = new SignalR.client(
             "wss://socket.bittrex.com/signalr",
             [ "CoreHub" ]
         );
 
-        websocketClient.serviceHandlers.connected = () => {
+        this.websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
-                websocketClient.call(
+                this.websocketClient.call(
                     "CoreHub",
                     "SubscribeToExchangeDeltas",
                     watchableMarket
@@ -345,7 +346,7 @@ export class BittrexApiClient {
 
         };
 
-        websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+        this.websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
 
             if( messageJson.type !== "utf8" ) {
                 return;
@@ -379,6 +380,10 @@ export class BittrexApiClient {
 
         };
 
+    }
+
+    public disconnectFromWebSocket(): void {
+        this.websocketClient = null;
     }
 
     private makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
