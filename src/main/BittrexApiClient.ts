@@ -360,16 +360,15 @@ export class BittrexApiClient {
             let exchangeStateUpdates: ExchangeStateUpdate[] = [];
             for( let updateJson of updatesJson ) {
 
-                if( updateJson.M === "updateExchangeState" ) {
-
-                    for( let exchangeStateUpdateJson of updateJson.A ) {
-                        exchangeStateUpdates.push(
-                            new ExchangeStateUpdate(
-                                exchangeStateUpdateJson
-                            )
-                        );
-                    }
-
+                if( updateJson.M !== "updateExchangeState" ) {
+                    continue;
+                }
+                for( let exchangeStateUpdateJson of updateJson.A ) {
+                    exchangeStateUpdates.push(
+                        new ExchangeStateUpdate(
+                            exchangeStateUpdateJson
+                        )
+                    );
                 }
 
             }
