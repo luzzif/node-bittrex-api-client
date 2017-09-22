@@ -14,6 +14,7 @@ import { OpenOrder } from "./model/OpenOrder";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
+import * as Promise from "bluebird";
 
 export class BittrexApiClient {
 
