@@ -15,6 +15,7 @@ import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import * as Promise from "bluebird";
+import { ResponseParsingError } from "./error/ResponseParsingError";
 
 export class BittrexApiClient {
 
@@ -357,7 +358,14 @@ export class BittrexApiClient {
             if( messageJson.type !== "utf8" ) {
                 return;
             }
-            messageJson = JSON.parse( messageJson.utf8Data );
+            try {
+                messageJson = JSON.parse( messageJson.utf8Data );
+            }
+            catch( error ) {
+                throw new ResponseParsingError(
+                    "Parsing Bittrex response threw an error. Response: " + messageJson.utf8Data
+                );
+            }
             let updatesJson = messageJson.M;
             if( updatesJson === undefined || updatesJson.length === 0 ) {
                 return;
