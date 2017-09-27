@@ -221,7 +221,7 @@ export class BittrexApiClient {
 
     }
 
-    public async getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
+    public async getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): Promise< void > {
 
         this.websocketClient = new SignalR.client(
             "wss://socket.bittrex.com/signalr",
