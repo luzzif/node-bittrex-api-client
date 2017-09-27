@@ -3,10 +3,10 @@
     "version": "1.0.10",
     "description": "A client which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
     "homepage": "https://github.com/luzzif/bittrex-api-client#readme",
-    "module": "index",
     "author": "luzzif",
     "license": "MIT",
     "main": "build/index.js",
+    "types": "src/main/index.d.js",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
