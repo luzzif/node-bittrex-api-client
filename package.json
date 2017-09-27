@@ -6,6 +6,7 @@
     "module": "index",
     "author": "luzzif",
     "license": "MIT",
+    "main": "build/index.js",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
