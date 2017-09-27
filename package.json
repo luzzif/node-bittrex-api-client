@@ -6,7 +6,6 @@
     "author": "luzzif",
     "license": "MIT",
     "main": "build/index.js",
-    "types": "src/main/index.d.js",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
