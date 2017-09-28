@@ -13,330 +13,225 @@ import { OrderType } from "./enum/OrderType";
 import { OpenOrder } from "./model/OpenOrder";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
+import { isNullOrUndefined } from "util";
+import { ResponseParsingError } from "./error/ResponseParsingError";
 
 export class BittrexApiClient {
 
     private apiKey: string;
     private apiSecret: string;
+    private websocketClient: SignalR.client;
 
     constructor( apiKey: string, apiSecret: string ) {
+
+        if( isNullOrUndefined( apiKey ) || isNullOrUndefined( apiSecret ) ) {
+            throw new Error( "API key and API secret cannot be undefined or null" );
+        }
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
-    }
-
-    public getMarkets(): Promise< Market[] > {
-
-        return this.makeRequest(
-            "public/getmarkets",
-        )
-        .then( ( marketsJson: any ): Market[] => {
-
-            let markets: Market[] = [];
-            for( let marketJson of marketsJson ) {
-                markets.push( new Market( marketJson ) );
-            }
-            return markets;
-
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
 
     }
 
-    public getCurrencies(): Promise< Currency[] > {
+    public async getMarkets(): Promise< Market[] > {
 
-        return this.makeRequest(
-            "public/getcurrencies",
-        )
-        .then( ( currenciesJson: any ): Currency[] => {
-
-            let currencies: Currency[] = [];
-            for( let currencyJson of currenciesJson ) {
-                currencies.push( new Currency( currencyJson ) );
-            }
-            return currencies;
-
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        let marketsJson: any = await this.makeRequest( "public/getmarkets" );
+        let markets: Market[] = [];
+        for( let marketJson of marketsJson ) {
+            markets.push( new Market( marketJson ) );
+        }
+        return markets;
 
     }
 
-    public getTicker( market: string ): Promise< Ticker > {
+    public async getCurrencies(): Promise< Currency[] > {
 
-        return this.makeRequest(
+        let currenciesJson: any = await this.makeRequest( "public/getcurrencies" );
+        let currencies: Currency[] = [];
+        for( let currencyJson of currenciesJson ) {
+            currencies.push( new Currency( currencyJson ) );
+        }
+        return currencies;
+
+    }
+
+    public async getTicker( market: string ): Promise< Ticker > {
+
+        return new Ticker( await this.makeRequest(
             "public/getticker",
             [ "market", market ]
-        )
-        .then( ( tickerJson: any ): Ticker => {
-            return new Ticker( tickerJson );
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        ) );
 
     }
 
-    public getMarketSummaries(): Promise< MarketSummary[] > {
+    public async getMarketSummaries(): Promise< MarketSummary[] > {
 
-        return this.makeRequest(
+        let marketSummariesJson: any = await this.makeRequest(
             "public/getmarketsummaries",
-        )
-        .then( ( marketSummariesJson: any ): MarketSummary[] => {
-
-            let marketSummaries: MarketSummary[] = [];
-            for( let marketSummaryJson of marketSummariesJson ) {
-                marketSummaries.push( new MarketSummary( marketSummaryJson ) );
-            }
-            return marketSummaries;
-
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        );
+        let marketSummaries: MarketSummary[] = [];
+        for( let marketSummaryJson of marketSummariesJson ) {
+            marketSummaries.push( new MarketSummary( marketSummaryJson ) );
+        }
+        return marketSummaries;
 
     }
 
-    public getMarketSummary( market: string ): Promise< MarketSummary > {
+    public async getMarketSummary( market: string ): Promise< MarketSummary > {
 
-        return this.makeRequest(
-            "public/getmarketsummary",
-            [ "market", market ]
-        )
-        .then( ( marketSummaryJson: any ): MarketSummary => {
-            return new MarketSummary( marketSummaryJson[ 0 ] );
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        return new MarketSummary(
+            await this.makeRequest(
+                "public/getmarketsummary",
+                [ "market", market ]
+            )[ 0 ]
+        );
 
     }
 
-    public getOrderBook( market: string, type: OrderBookType ): Promise< Order[] > {
+    public async getOrderBook( market: string, type: OrderBookType ): Promise< Order[] > {
 
-        return this.makeRequest(
+        let ordersJson: any = await this.makeRequest(
             "public/getorderbook",
             [ "market", market ],
             [ "type", OrderBookType[ type ] ]
-        )
-        .then( ( ordersJson: any ): Order[] => {
+        );
+        let orders: Order[] = [];
+        if( type === OrderBookType.BOTH ) {
 
-            let orders: Order[] = [];
-            if( type === OrderBookType.BOTH ) {
-
-                for( let buyOrderJson of ordersJson.buy ) {
-                    orders.push( new Order( buyOrderJson, OrderType.BUY ) );
-                }
-                for( let sellOrderJson of ordersJson.sell ) {
-                    orders.push( new Order( sellOrderJson, OrderType.SELL ) );
-                }
-                return orders;
-
+            for( let buyOrderJson of ordersJson.buy ) {
+                orders.push( new Order( buyOrderJson, OrderType.BUY ) );
             }
-            for( let orderJson of ordersJson ) {
-                ordersJson.push(
-                    new Order(
-                        orderJson,
-                        type === OrderBookType.BUY ? OrderType.BUY : OrderType.SELL
-                    )
-                );
+            for( let sellOrderJson of ordersJson.sell ) {
+                orders.push( new Order( sellOrderJson, OrderType.SELL ) );
             }
             return orders;
 
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        }
+        for( let orderJson of ordersJson ) {
+            ordersJson.push(
+                new Order(
+                    orderJson,
+                    type === OrderBookType.BUY ? OrderType.BUY : OrderType.SELL
+                )
+            );
+        }
+        return orders;
 
     }
 
-    public getMarketHistory( market: string ): Promise< Trade[] > {
+    public async getMarketHistory( market: string ): Promise< Trade[] > {
 
-        return this.makeRequest(
+        let tradesJson: any = await this.makeRequest(
             "/public/getmarkethistory",
             [ "market", market ]
-        )
-        .then( ( tradesJson: any ): Trade[] => {
-
-            let trades: Trade[] = [];
-            for( let tradeJson of tradesJson ) {
-                trades.push( new Trade( tradeJson ) );
-            }
-            return trades;
-
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        );
+        let trades: Trade[] = [];
+        for( let tradeJson of tradesJson ) {
+            trades.push( new Trade( tradeJson ) );
+        }
+        return trades;
 
     }
 
-    public buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
+    public async buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
-        return this.makeRequest(
+        return ( await this.makeRequest(
             "/market/buylimit",
             [ "market", market ],
             [ "quantity", quantity.toString() ],
             [ "rate", rate.toString() ]
-        )
-        .then( ( orderIdJson: any ): string => {
-            return orderIdJson.uuid;
-        } )
-        .catch( ( errorMessage: string ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        ) ).uuid;
 
     }
 
-    public sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
+    public async sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
-        return this.makeRequest(
+        return ( await this.makeRequest(
             "/market/selllimit",
             [ "market", market ],
             [ "quantity", quantity.toString() ],
             [ "rate", rate.toString() ]
-        )
-            .then( ( orderIdJson: any ): string => {
-                return orderIdJson.uuid;
-            } )
-            .catch( ( errorMessage: string ): null => {
-                console.log( "Error calling Bittrex API: " + errorMessage );
-                return null;
-            } );
+        ) ).uuid;
 
     }
 
-    public cancelOrder( orderId: string ): Promise< boolean > {
+    public async cancelOrder( orderId: string ): Promise< boolean > {
 
-        return this.makeRequest(
+        await this.makeRequest(
             "/market/cancelOrder",
             [ "uuid", orderId ]
-        )
-        .then( (): boolean => {
-            return true;
-        } )
-        .catch( ( errorMessage ): boolean => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return false;
-        } );
+        );
+        return true;
 
     }
 
-    public getOpenOrders( market: string ): Promise< OpenOrder[] > {
+    public async getOpenOrders( market: string ): Promise< OpenOrder[] > {
 
-        return this.makeRequest(
+        let openOrdersJson: any = await this.makeRequest(
             "/market/getopenorders",
             [ "market", market ]
-        )
-        .then( ( openOrdersJson: any ): OpenOrder[] => {
-
-            let openOrders: OpenOrder[] = [];
-            for( let openOrderJson of openOrdersJson ) {
-                openOrders.push( new OpenOrder( openOrderJson ) );
-            }
-            return openOrders;
-
-        } )
-        .catch( ( errorMessage ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        );
+        let openOrders: OpenOrder[] = [];
+        for( let openOrderJson of openOrdersJson ) {
+            openOrders.push( new OpenOrder( openOrderJson ) );
+        }
+        return openOrders;
 
     }
 
-    public getBalances(): Promise< Balance[] > {
+    public async getBalances(): Promise< Balance[] > {
 
-        return this.makeRequest(
+        let balancesJson: any = await this.makeRequest(
             "/account/getbalances",
-        )
-        .then( ( balancesJson: any ): Balance[] => {
-
-            let balances: Balance[] = [];
-            for( let balanceJson of balancesJson ) {
-                balances.push( new Balance( balanceJson ) );
-            }
-            return balances;
-
-        } )
-        .catch( ( errorMessage ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        );
+        let balances: Balance[] = [];
+        for( let balanceJson of balancesJson ) {
+            balances.push( new Balance( balanceJson ) );
+        }
+        return balances;
 
     }
 
-    public getBalance( currency: string  ): Promise< Balance > {
+    public async getBalance( currency: string  ): Promise< Balance > {
 
-        return this.makeRequest(
+        return new Balance( await this.makeRequest(
             "/account/getbalance",
             [ "currency", currency ]
-        )
-        .then( ( balanceJson: any ): Balance => {
-            return new Balance( balanceJson );
-        } )
-        .catch( ( errorMessage ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        ) );
 
     }
 
-    public getDepositAddress( currency: string ): Promise< string > {
+    public async getDepositAddress( currency: string ): Promise< string > {
 
-        return this.makeRequest(
+        return ( await this.makeRequest(
             "/account/getdepositaddress",
             [ "currency", currency ]
-        )
-        .then( ( depositAddressJson: any ): string => {
-            return depositAddressJson.Address;
-        } )
-        .catch( ( errorMessage ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        ) ).Address;
 
     }
 
-    public withdraw( currency: string, quantity: number, address: string, paymentId?: string ): Promise< string > {
+    public async withdraw( currency: string, quantity: number, address: string, paymentId?: string ): Promise< string > {
 
-        return this.makeRequest(
+        return ( await this.makeRequest(
             "/account/withdraw",
             [ "currency", currency ],
             [ "quantity", quantity.toString() ],
             [ "address", address ],
             [ "paymentId", paymentId ],
-        )
-        .then( ( withdrawJson: any ): string => {
-            return withdrawJson.uuid;
-        } )
-        .catch( ( errorMessage ): null => {
-            console.log( "Error calling Bittrex API: " + errorMessage );
-            return null;
-        } );
+        ) ).uuid;
 
     }
 
-    public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
+    public async getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): Promise< void > {
 
-        let websocketClient: SignalR.client = new SignalR.client(
+        this.websocketClient = new SignalR.client(
             "wss://socket.bittrex.com/signalr",
             [ "CoreHub" ]
         );
 
-        websocketClient.serviceHandlers.connected = () => {
+        this.websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
-                websocketClient.call(
+                this.websocketClient.call(
                     "CoreHub",
                     "SubscribeToExchangeDeltas",
                     watchableMarket
@@ -345,12 +240,19 @@ export class BittrexApiClient {
 
         };
 
-        websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+        this.websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
 
             if( messageJson.type !== "utf8" ) {
                 return;
             }
-            messageJson = JSON.parse( messageJson.utf8Data );
+            try {
+                messageJson = JSON.parse( messageJson.utf8Data );
+            }
+            catch( error ) {
+                throw new ResponseParsingError(
+                    `An error occurred parsing Bittrex's response. The response was: ${ messageJson }`
+                );
+            }
             let updatesJson = messageJson.M;
             if( updatesJson === undefined || updatesJson.length === 0 ) {
                 return;
@@ -359,16 +261,15 @@ export class BittrexApiClient {
             let exchangeStateUpdates: ExchangeStateUpdate[] = [];
             for( let updateJson of updatesJson ) {
 
-                if( updateJson.M === "updateExchangeState" ) {
-
-                    for( let exchangeStateUpdateJson of updateJson.A ) {
-                        exchangeStateUpdates.push(
-                            new ExchangeStateUpdate(
-                                exchangeStateUpdateJson
-                            )
-                        );
-                    }
-
+                if( updateJson.M !== "updateExchangeState" ) {
+                    continue;
+                }
+                for( let exchangeStateUpdateJson of updateJson.A ) {
+                    exchangeStateUpdates.push(
+                        new ExchangeStateUpdate(
+                            exchangeStateUpdateJson
+                        )
+                    );
                 }
 
             }
@@ -381,7 +282,7 @@ export class BittrexApiClient {
 
     }
 
-    private makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
+    private async makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
             "/api/v1.1/" + operation,
@@ -416,7 +317,15 @@ export class BittrexApiClient {
 
                 bittrexResponse.on( "data", ( bittrexData: any ): void => {
 
-                    bittrexData = JSON.parse( bittrexData.toString() );
+                    try {
+                        bittrexData = JSON.parse( bittrexData.toString() );
+                    }
+                    catch( error ) {
+                        throw new ResponseParsingError(
+                            `An error occurred parsing Bittrex's response. The response was: ${ bittrexData.toString() }`
+                        );
+                    }
+
                     if( bittrexData.success ) {
                         fulfill( bittrexData.result );
                     }

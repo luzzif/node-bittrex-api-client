@@ -1,16 +1,19 @@
 {
     "name": "bittrex-api-client",
-    "version": "1.0.2",
+    "version": "1.1.1",
     "description": "A client which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
+    "homepage": "https://github.com/luzzif/bittrex-api-client#readme",
+    "author": "luzzif",
+    "license": "MIT",
     "main": "build/index.js",
-    "types": "build/index.js",
     "engines": {
         "node": "8.4.0",
         "npm": "5.3.0"
     },
     "scripts": {
         "build": "tsc",
-        "test": "mocha -r ts-node/register src/test/**/*.ts"
+        "test": "mocha -r ts-node/register src/test/**/*.ts",
+        "prepublish": "tsc"
     },
     "repository": {
         "type": "git",
@@ -21,12 +24,9 @@
         "api",
         "client"
     ],
-    "author": "luzzif",
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/luzzif/bittrex-api-client/issues"
     },
-    "homepage": "https://github.com/luzzif/bittrex-api-client#readme",
     "dependencies": {
         "crypto-js": "^3.1.9-1",
         "signalr-client": "^0.0.17"

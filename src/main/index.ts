@@ -3,6 +3,8 @@ export { FillType } from "./enum/FillType";
 export { OrderBookType } from "./enum/OrderBookType";
 export { OrderType } from "./enum/OrderType";
 
+export { ResponseParsingError } from "./error/ResponseParsingError";
+
 export { Balance } from "./model/Balance";
 export { Currency } from "./model/Currency";
 export { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";

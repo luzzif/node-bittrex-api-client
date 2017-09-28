@@ -27,12 +27,7 @@ export class ExchangeStateUpdate {
 
         this._fills = [];
         for( let fillJson of json.Fills ) {
-            this._fills.push(
-                new Order(
-                    fillJson,
-                    json.OrderType === "BUY" ? OrderType.BUY : OrderType.SELL
-                )
-            );
+            this._fills.push( new Order( fillJson ) );
         }
 
     }
