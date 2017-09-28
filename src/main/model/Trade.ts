@@ -1,6 +1,9 @@
 import { OrderType } from "../enum/OrderType";
 import { FillType } from "../enum/FillType";
 
+/**
+ * Represents a single trade.
+ */
 export class Trade {
 
     private _id: number;

@@ -1,3 +1,6 @@
+/**
+ * Represents a single market summary.
+ */
 export class MarketSummary {
 
     private _name: string;

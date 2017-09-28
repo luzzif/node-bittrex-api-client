@@ -1,3 +1,6 @@
+/**
+ * Represents a single ticker.
+ */
 export class Ticker {
 
     private _bid: number;

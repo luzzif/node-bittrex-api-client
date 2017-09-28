@@ -1,3 +1,6 @@
+/**
+ * Represents a single currency.
+ */
 export class Currency {
 
     private _nameShort: string;

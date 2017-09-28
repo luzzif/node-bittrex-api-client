@@ -1,3 +1,6 @@
+/**
+ * Represents an account balance.
+ */
 export class Balance {
 
     private _currency: string;

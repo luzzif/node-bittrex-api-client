@@ -1,3 +1,6 @@
+/**
+ * Represents a single market.
+ */
 export class Market {
 
     private _marketCurrencyShort: string;

@@ -1,6 +1,9 @@
 import { Order } from "./Order";
 import { OrderType } from "../enum/OrderType";
 
+/**
+ * Represents a single exchange state update.
+ */
 export class ExchangeStateUpdate {
 
     private _nounce: number;

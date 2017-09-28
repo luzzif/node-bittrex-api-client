@@ -16,12 +16,27 @@ import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
 
+/**
+ * Represents a single Bittrex API client.
+ */
 export class BittrexApiClient {
 
+    /**
+     * The personal account's API key.
+     */
     private apiKey: string;
-    private apiSecret: string;
-    private websocketClient: SignalR.client;
 
+    /**
+     * The personal account's API secret.
+     */
+    private apiSecret: string;
+
+    /**
+     * Initializes a new Bittrex API client.
+     *
+     * @param apiKey    The personal account API key.
+     * @param apiSecret The personal account API secret.
+     */
     constructor( apiKey: string, apiSecret: string ) {
 
         if( isNullOrUndefined( apiKey ) || isNullOrUndefined( apiSecret ) ) {
@@ -32,6 +47,12 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getmarkets" Bittrex's API operation.
+     *
+     * @returns Either a promise of a market, or a market
+     *          if using the await construct.
+     */
     public async getMarkets(): Promise< Market[] > {
 
         let marketsJson: any = await this.makeRequest( "public/getmarkets" );
@@ -43,6 +64,12 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getcurrencies" Bittrex's API operation.
+     *
+     * @returns Either a promise of a currency array, or a currency array
+     *          if using the await construct.
+     */
     public async getCurrencies(): Promise< Currency[] > {
 
         let currenciesJson: any = await this.makeRequest( "public/getcurrencies" );
@@ -54,6 +81,14 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getticker" Bittrex's API operation.
+     *
+     * @param   market The market of which we would like
+     *                 to retrieve the ticker.
+     * @returns Either a promise of a ticker, or a ticker
+     *          if using the await construct.
+     */
     public async getTicker( market: string ): Promise< Ticker > {
 
         return new Ticker( await this.makeRequest(
@@ -63,6 +98,12 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getmarketsummaries" Bittrex's API operation.
+     *
+     * @returns Either a promise of a market array, or a market array
+     *          if using the await construct.
+     */
     public async getMarketSummaries(): Promise< MarketSummary[] > {
 
         let marketSummariesJson: any = await this.makeRequest(
@@ -76,6 +117,14 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getmarketsummary" Bittrex's API operation.
+     *
+     * @param   market The market of which we would like
+     *                 to retrieve the summary.
+     * @returns Either a promise of a market summary, or a market summary
+     *          if using the await construct.
+     */
     public async getMarketSummary( market: string ): Promise< MarketSummary > {
 
         return new MarketSummary(
@@ -87,6 +136,17 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getorderbook" Bittrex's API operation.
+     *
+     * @param   market The market of which we would like
+     *                 to retrieve the order book.
+     * @param   type   The type of the order book that we want to
+     *                 retrieve, depending on if we want only the
+     *                 buys, sells, or both.
+     * @returns Either a promise of an order book, or an order book
+     *          if using the await construct.
+     */
     public async getOrderBook( market: string, type: OrderBookType ): Promise< Order[] > {
 
         let ordersJson: any = await this.makeRequest(
@@ -118,6 +178,14 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getmarkethistory" Bittrex's API operation.
+     *
+     * @param   market The market of which we would like
+     *                 to retrieve the market history.
+     * @returns Either a promise of a market history, or a market history
+     *          if using the await construct.
+     */
     public async getMarketHistory( market: string ): Promise< Trade[] > {
 
         let tradesJson: any = await this.makeRequest(
@@ -132,6 +200,15 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/buylimit" Bittrex's API operation.
+     *
+     * @param   market   The market on which we would like to buy.
+     * @param   quantity The quantity that we would like to buy.
+     * @param   rate     The price at which we would like to buy.
+     * @returns Either a promise of the placed order's ID, or the placed
+     *          order's ID if using the await construct.
+     */
     public async buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
         return ( await this.makeRequest(
@@ -143,6 +220,15 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/selllimit" Bittrex's API operation.
+     *
+     * @param   market   The market on which we would like to sell.
+     * @param   quantity The quantity that we would like to sell.
+     * @param   rate     The price at which we would like to sell.
+     * @returns Either a promise of the placed order's ID, or the placed
+     *          order's ID if using the await construct.
+     */
     public async sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
         return ( await this.makeRequest(
@@ -154,16 +240,31 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/cancelorder" Bittrex's API operation.
+     *
+     * @param   orderId The ID of the order we would like to cancel.
+     * @returns True if the operation resulted in a success, throws
+     *          otherwise.
+     */
     public async cancelOrder( orderId: string ): Promise< boolean > {
 
         await this.makeRequest(
-            "/market/cancelOrder",
+            "/market/cancelorder",
             [ "uuid", orderId ]
         );
         return true;
 
     }
 
+    /**
+     * Interface to the "public/getopenorders" Bittrex's API operation.
+     *
+     * @param   market The market of which we would like to retrieve
+     *                 the open orders.
+     * @returns Either a promise of an open order array, or an open
+     *          order array if using the await construct.
+     */
     public async getOpenOrders( market: string ): Promise< OpenOrder[] > {
 
         let openOrdersJson: any = await this.makeRequest(
@@ -178,6 +279,12 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getbalances" Bittrex's API operation.
+     *
+     * @returns Either a promise of a balance array, or a balance
+     *          array if using the await construct.
+     */
     public async getBalances(): Promise< Balance[] > {
 
         let balancesJson: any = await this.makeRequest(
@@ -191,7 +298,15 @@ export class BittrexApiClient {
 
     }
 
-    public async getBalance( currency: string  ): Promise< Balance > {
+    /**
+     * Interface to the "public/getbalance" Bittrex's API operation.
+     *
+     * @param currency The currency of which we would like to retrieve
+     *                 the balance.
+     * @returns Either a promise of a balance, or a balance if using
+     *          the await construct.
+     */
+    public async getBalance( currency: string ): Promise< Balance > {
 
         return new Balance( await this.makeRequest(
             "/account/getbalance",
@@ -200,6 +315,14 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getdepositaddress" Bittrex's API operation.
+     *
+     * @param currency The currency of which we would like to retrieve
+     *                 the deposit address.
+     * @returns Either a promise of a deposit address, or a deposit
+     *          address if using the await construct.
+     */
     public async getDepositAddress( currency: string ): Promise< string > {
 
         return ( await this.makeRequest(
@@ -209,6 +332,17 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the "public/getdepositaddress" Bittrex's API operation.
+     *
+     * @param currency  The currency which we would like to withdraw.
+     * @param quantity  The quantity which we would like to withdraw.
+     * @param address   The address to which we would like to withdraw.
+     * @param paymentId Optional parameter used for CryptoNotes/BitShareX/Nxt.
+     *
+     * @returns Either a promise of a withdrawal ID, or a withdrawal ID
+     *          if using the await construct.
+     */
     public async withdraw( currency: string, quantity: number, address: string, paymentId?: string ): Promise< string > {
 
         return ( await this.makeRequest(
@@ -221,17 +355,26 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Interface to the Bittrex's API websockets system.
+     *
+     * @param watchableMarkets The markets of which we would like
+     *                         to receive constant updates.
+     * @param callback A callback function invoked as soon as new
+     *                updates about the watched markets are received
+     *                from Bittrex.
+     */
     public async getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): Promise< void > {
 
-        this.websocketClient = new SignalR.client(
+        let websocketClient: SignalR.client = new SignalR.client(
             "wss://socket.bittrex.com/signalr",
             [ "CoreHub" ]
         );
 
-        this.websocketClient.serviceHandlers.connected = () => {
+        websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
-                this.websocketClient.call(
+                websocketClient.call(
                     "CoreHub",
                     "SubscribeToExchangeDeltas",
                     watchableMarket
@@ -240,7 +383,7 @@ export class BittrexApiClient {
 
         };
 
-        this.websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+        websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
 
             if( messageJson.type !== "utf8" ) {
                 return;
@@ -282,6 +425,17 @@ export class BittrexApiClient {
 
     }
 
+    /**
+     * Utility method that sends a request to the Bittrex's API, handling the
+     * authentication through the API key and API secret given when instantiating
+     * the client itself.
+     *
+     * @param operation The Bittrex's API operation that we would like to call.
+     * @param parameters The parameters which the operation takes in.
+     *
+     * @returns Either the promise of the Bittrex's API JSON response, or the
+     *          JSON response if using the await construct.
+     */
     private async makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
