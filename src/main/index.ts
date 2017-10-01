@@ -1,4 +1,4 @@
-export { Condition } from "./enum/Condition";
+export { ConditionType } from "./enum/ConditionType";
 export { FillType } from "./enum/FillType";
 export { OrderBookType } from "./enum/OrderBookType";
 export { OrderType } from "./enum/OrderType";

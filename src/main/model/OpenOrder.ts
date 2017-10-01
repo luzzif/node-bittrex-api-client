@@ -1,6 +1,9 @@
 import { OrderType } from "../enum/OrderType";
-import { Condition } from "../enum/Condition";
+import { ConditionType } from "../enum/ConditionType";
 
+/**
+ * Represents a single open order.
+ */
 export class OpenOrder {
 
     private _id: string;
@@ -16,7 +19,7 @@ export class OpenOrder {
     private _cancelInitiated: boolean;
     private _immediateOrCancel: boolean;
     private _conditional: boolean;
-    private _condition: Condition;
+    private _condition: ConditionType;
     private _conditionTarget: number;
 
     constructor( json: any ) {
@@ -143,11 +146,11 @@ export class OpenOrder {
         this._conditional = value;
     }
 
-    get condition(): Condition {
+    get condition(): ConditionType {
         return this._condition;
     }
 
-    set condition( value: Condition ) {
+    set condition( value: ConditionType ) {
         this._condition = value;
     }
 
