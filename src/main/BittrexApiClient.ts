@@ -79,10 +79,10 @@ export class BittrexApiClient {
     public async getMarketSummary( market: string ): Promise< MarketSummary > {
 
         return new MarketSummary(
-            await this.makeRequest(
+            ( await this.makeRequest(
                 "public/getmarketsummary",
                 [ "market", market ]
-            )[ 0 ]
+            ) )[ 0 ]
         );
 
     }
