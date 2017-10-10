@@ -15,6 +15,7 @@ import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
+import { WebSocketError } from "./error/WebSocketError";
 
 /**
  * Represents a single Bittrex API client.
@@ -370,6 +371,13 @@ export class BittrexApiClient {
             "wss://socket.bittrex.com/signalr",
             [ "CoreHub" ]
         );
+
+        websocketClient.serviceHandlers.disconnected = () => {
+            websocketClient = new SignalR.client(
+                "wss://socket.bittrex.com/signalr",
+                [ "CoreHub" ]
+            );
+        };
 
         websocketClient.serviceHandlers.connected = () => {
 
