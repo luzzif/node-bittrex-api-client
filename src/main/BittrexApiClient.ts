@@ -379,6 +379,10 @@ export class BittrexApiClient {
             );
         };
 
+        websocketClient.serviceHandlers.onerror = ( error ) => {
+            throw new WebSocketError( error );
+        };
+
         websocketClient.serviceHandlers.connected = () => {
 
             for( let watchableMarket of watchableMarkets ) {
