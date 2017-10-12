@@ -357,6 +357,23 @@ export class BittrexApiClient {
     }
 
     /**
+     * Interface to the "public/getorder" Bittrex's API operation.
+     *
+     * @param uuid  The uuid of the order of which we would like to get the detail.
+     *
+     * @returns Either a promise of an open order, or an open order if using
+     *          the await construct.
+     */
+    public async getOrder( uuid: string ): Promise< OpenOrder > {
+
+        return new OpenOrder( await this.makeRequest(
+            "/account/getorder",
+            [ "uuid", uuid ]
+        ) );
+
+    }
+
+    /**
      * Interface to the Bittrex's API websockets system.
      *
      * @param watchableMarkets The markets of which we would like
