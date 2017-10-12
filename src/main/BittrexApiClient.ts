@@ -266,7 +266,7 @@ export class BittrexApiClient {
      * @returns Either a promise of an open order array, or an open
      *          order array if using the await construct.
      */
-    public async getOpenOrders( market: string ): Promise< OpenOrder[] > {
+    public async getOpenOrders( market?: string ): Promise< OpenOrder[] > {
 
         let openOrdersJson: any = await this.makeRequest(
             "/market/getopenorders",
