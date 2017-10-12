@@ -372,11 +372,8 @@ export class BittrexApiClient {
             [ "CoreHub" ]
         );
 
-        websocketClient.serviceHandlers.disconnected = () => {
-            websocketClient = new SignalR.client(
-                "wss://socket.bittrex.com/signalr",
-                [ "CoreHub" ]
-            );
+        websocketClient.serviceHandlers.reconnecting = () => {
+            return false;
         };
 
         websocketClient.serviceHandlers.onerror = ( error ) => {
