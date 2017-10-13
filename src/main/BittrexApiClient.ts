@@ -17,6 +17,9 @@ import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
 import { ApiError } from "./error/ApiError";
 import * as Path from "path";
+import * as Cloudscraper from "cloudscraper";
+import { IncomingMessage } from "https";
+import { CloudscraperError } from "./error/CloudscraperError";
 
 /**
  * Represents a single Bittrex API client.
@@ -385,72 +388,85 @@ export class BittrexApiClient {
      */
     public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
 
-        let websocketClient: SignalR.client = new SignalR.client(
-            "wss://socket.bittrex.com/signalr",
-            [ "CoreHub" ]
-        );
+        let websocketClient: SignalR.client;
+        Cloudscraper.get( "https://bittrex.com/", ( error, response ) => {
 
-        setInterval( () => {
-
-            websocketClient.end();
+            if( error ) {
+                throw new CloudscraperError( error );
+            }
             websocketClient = new SignalR.client(
                 "wss://socket.bittrex.com/signalr",
-                [ "CoreHub" ]
+                [ "CoreHub" ],
+                null,
+                true
             );
+            websocketClient.headers[ "User-Agent" ] = response.request.headers[ "User-Agent" ] || "";
+            websocketClient.headers[ "cookie" ] = response.request.headers[ "cookie" ] || "";
+            websocketClient.start();
 
-        }, 1800000 );
+            setInterval( () => {
 
-        websocketClient.serviceHandlers.connected = () => {
-
-            for( let watchableMarket of watchableMarkets ) {
-                websocketClient.call(
-                    "CoreHub",
-                    "SubscribeToExchangeDeltas",
-                    watchableMarket
+                websocketClient.end();
+                websocketClient = new SignalR.client(
+                    "wss://socket.bittrex.com/signalr",
+                    [ "CoreHub" ]
                 );
-            }
 
-        };
+            }, 1800000 );
 
-        websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+            websocketClient.serviceHandlers.connected = () => {
 
-            if( messageJson.type !== "utf8" ) {
-                return;
-            }
-            try {
-                messageJson = JSON.parse( messageJson.utf8Data );
-            }
-            catch( error ) {
-                throw new ResponseParsingError(
-                    `An error occurred parsing Bittrex's response. The response was: ${ messageJson }`
-                );
-            }
-            let updatesJson = messageJson.M;
-            if( updatesJson === undefined || updatesJson.length === 0 ) {
-                return;
-            }
-
-            let exchangeStateUpdates: ExchangeStateUpdate[] = [];
-            for( let updateJson of updatesJson ) {
-
-                if( updateJson.M !== "updateExchangeState" ) {
-                    continue;
-                }
-                for( let exchangeStateUpdateJson of updateJson.A ) {
-                    exchangeStateUpdates.push(
-                        new ExchangeStateUpdate(
-                            exchangeStateUpdateJson
-                        )
+                for( let watchableMarket of watchableMarkets ) {
+                    websocketClient.call(
+                        "CoreHub",
+                        "SubscribeToExchangeDeltas",
+                        watchableMarket
                     );
                 }
 
-            }
-            if( exchangeStateUpdates.length === 0 ) {
-                return;
-            }
-            callback( exchangeStateUpdates );
+            };
 
-        };
+            websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+
+                if( messageJson.type !== "utf8" ) {
+                    return;
+                }
+                try {
+                    messageJson = JSON.parse( messageJson.utf8Data );
+                }
+                catch( error ) {
+                    throw new ResponseParsingError(
+                        `An error occurred parsing Bittrex's response. The response was: ${ messageJson }`
+                    );
+                }
+                let updatesJson = messageJson.M;
+                if( updatesJson === undefined || updatesJson.length === 0 ) {
+                    return;
+                }
+
+                let exchangeStateUpdates: ExchangeStateUpdate[] = [];
+                for( let updateJson of updatesJson ) {
+
+                    if( updateJson.M !== "updateExchangeState" ) {
+                        continue;
+                    }
+                    for( let exchangeStateUpdateJson of updateJson.A ) {
+                        exchangeStateUpdates.push(
+                            new ExchangeStateUpdate(
+                                exchangeStateUpdateJson
+                            )
+                        );
+                    }
+
+                }
+                if( exchangeStateUpdates.length === 0 ) {
+                    return;
+                }
+                callback( exchangeStateUpdates );
+
+            };
+
+        } );
 
     }
 
