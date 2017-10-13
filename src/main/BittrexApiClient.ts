@@ -400,19 +400,17 @@ export class BittrexApiClient {
                 null,
                 true
             );
-            websocketClient.headers[ "User-Agent" ] = response.request.headers[ "User-Agent" ] || "";
-            websocketClient.headers[ "cookie" ] = response.request.headers[ "cookie" ] || "";
-            websocketClient.start();
+            let cloudflareUserAgent: string = response.request.headers[ "User-Agent" ];
+            let cloudflareCookie: string = response.request.headers[ "cookie" ];
+            if( isNullOrUndefined( cloudflareUserAgent ) || isNullOrUndefined( cloudflareCookie ) ) {
+                throw new CloudscraperError( "returned user agent or cookie is null or undefined" );
+            }
+            websocketClient.headers[ "User-Agent" ] = cloudflareUserAgent;
+            websocketClient.headers[ "cookie" ] = cloudflareCookie;
 
-            setInterval( () => {
-
-                websocketClient.end();
-                websocketClient = new SignalR.client(
-                    "wss://socket.bittrex.com/signalr",
-                    [ "CoreHub" ]
-                );
-
-            }, 1800000 );
+            websocketClient.serviceHandlers.reconnecting = () => {
+                return false;
+            };
 
             websocketClient.serviceHandlers.connected = () => {
 
@@ -465,6 +463,7 @@ export class BittrexApiClient {
                 callback( exchangeStateUpdates );
 
             };
+            websocketClient.start();
 
         } );
 
