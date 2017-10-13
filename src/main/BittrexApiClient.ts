@@ -17,6 +17,7 @@ import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
 import { WebSocketError } from "./error/WebSocketError";
 import { ApiError } from "./error/ApiError";
+import * as Path from "path";
 
 /**
  * Represents a single Bittrex API client.
@@ -466,7 +467,7 @@ export class BittrexApiClient {
     private async makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
 
         let apiEndpointUrl: URL = new URL(
-            "/api/v1.1/" + operation,
+            Path.join( "/api/v1.1", operation ),
             "https://www.bittrex.com/"
         );
 
