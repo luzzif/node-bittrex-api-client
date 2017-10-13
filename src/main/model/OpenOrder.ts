@@ -16,6 +16,7 @@ export class OpenOrder {
     private _unitPrice: number;
     private _opened: Date;
     private _closed: Date;
+    private _isOpen: boolean;
     private _cancelInitiated: boolean;
     private _immediateOrCancel: boolean;
     private _conditional: boolean;
@@ -34,6 +35,7 @@ export class OpenOrder {
         this._unitPrice = json.PricePerUnit;
         this._opened = new Date( json.Opened );
         this._closed = new Date( json.Closed );
+        this._isOpen = json.IsOpen;
         this._cancelInitiated = json.CancelInitiated;
         this._immediateOrCancel = json.ImmediateOrCancel;
         this._conditional = json.IsConditional;
@@ -120,6 +122,14 @@ export class OpenOrder {
 
     set closed( value: Date ) {
         this._closed = value;
+    }
+
+    get isOpen(): boolean {
+        return this._isOpen;
+    }
+
+    set isOpen( value: boolean ) {
+        this._isOpen = value;
     }
 
     get cancelInitiated(): boolean {
