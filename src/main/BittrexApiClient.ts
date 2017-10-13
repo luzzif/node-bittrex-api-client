@@ -16,6 +16,7 @@ import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
 import { WebSocketError } from "./error/WebSocketError";
+import { ApiError } from "./error/ApiError";
 
 /**
  * Represents a single Bittrex API client.
@@ -491,7 +492,7 @@ export class BittrexApiClient {
             this.apiSecret
         );
 
-        return new Promise< any >( ( fulfill: ( json: any ) => any, reject: ( errorMessage: string ) => any ) => {
+        return new Promise< any >( ( fulfill: ( json: any ) => any ) => {
 
             let clientRequest: Https.ClientRequest = Https.request( apiEndpointUrl, ( bittrexResponse: Https.IncomingMessage ): void => {
 
@@ -510,7 +511,7 @@ export class BittrexApiClient {
                         fulfill( bittrexData.result );
                     }
                     else {
-                        reject( bittrexData.message );
+                        throw new ApiError( bittrexData.message );
                     }
 
                 } );
