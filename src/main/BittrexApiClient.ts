@@ -15,7 +15,6 @@ import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import { ResponseParsingError } from "./error/ResponseParsingError";
-import { WebSocketError } from "./error/WebSocketError";
 import { ApiError } from "./error/ApiError";
 import * as Path from "path";
 
@@ -391,13 +390,15 @@ export class BittrexApiClient {
             [ "CoreHub" ]
         );
 
-        websocketClient.serviceHandlers.reconnecting = () => {
-            return false;
-        };
+        setInterval( () => {
 
-        websocketClient.serviceHandlers.onerror = ( error ) => {
-            throw new WebSocketError( error );
-        };
+            websocketClient.end();
+            websocketClient = new SignalR.client(
+                "wss://socket.bittrex.com/signalr",
+                [ "CoreHub" ]
+            );
+
+        }, 1800000 );
 
         websocketClient.serviceHandlers.connected = () => {
 
