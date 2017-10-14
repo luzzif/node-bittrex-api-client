@@ -254,7 +254,7 @@ export class BittrexApiClient {
     public async cancelOrder( orderId: string ): Promise< boolean > {
 
         await this.makeRequest(
-            "/market/cancelorder",
+            "/market/cancel",
             [ "uuid", orderId ]
         );
         return true;
