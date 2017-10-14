@@ -4,6 +4,8 @@
 export enum OrderType {
 
     BUY,
-    SELL
+    SELL,
+    LIMIT_BUY,
+    LIMIT_SELL
 
 }

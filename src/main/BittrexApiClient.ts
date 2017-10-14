@@ -6,7 +6,7 @@ import { Market } from "./model/Market";
 import { Currency } from "./model/Currency";
 import { Ticker } from "./model/Ticker";
 import { MarketSummary } from "./model/MarketSummary";
-import { Order } from "./model/Order";
+import { OrderBookOrder } from "./model/OrderBookOrder";
 import { OrderBookType } from "./enum/OrderBookType";
 import { Trade } from "./model/Trade";
 import { OrderType } from "./enum/OrderType";
@@ -19,6 +19,7 @@ import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { ResponseParsingError } from "./error/ResponseParsingError";
+import { Order } from "./model/Order";
 
 /**
  * Represents a single Bittrex API client.
@@ -144,41 +145,41 @@ export class BittrexApiClient {
      * Interface to the "public/getorderbook" Bittrex's API operation.
      *
      * @param   market The market of which we would like
-     *                 to retrieve the order book.
+     *                 to retrieve t\he order book.
      * @param   type   The type of the order book that we want to
      *                 retrieve, depending on if we want only the
      *                 buys, sells, or both.
      * @returns Either a promise of an order book, or an order book
      *          if using the await construct.
      */
-    public async getOrderBook( market: string, type: OrderBookType ): Promise< Order[] > {
+    public async getOrderBook( market: string, type: OrderBookType ): Promise< OrderBookOrder[] > {
 
         let ordersJson: any = await this.makeRequest(
             "public/getorderbook",
             [ "market", market ],
-            [ "type", OrderBookType[ type ] ]
+            [ "type", OrderBookType[ type ].toString().toLowerCase() ]
         );
-        let orders: Order[] = [];
+        let orderBookOrders: OrderBookOrder[] = [];
         if( type === OrderBookType.BOTH ) {
 
             for( let buyOrderJson of ordersJson.buy ) {
-                orders.push( new Order( buyOrderJson, OrderType.BUY ) );
+                orderBookOrders.push( new OrderBookOrder( buyOrderJson, OrderType.BUY ) );
             }
             for( let sellOrderJson of ordersJson.sell ) {
-                orders.push( new Order( sellOrderJson, OrderType.SELL ) );
+                orderBookOrders.push( new OrderBookOrder( sellOrderJson, OrderType.SELL ) );
             }
-            return orders;
+            return orderBookOrders;
 
         }
         for( let orderJson of ordersJson ) {
             ordersJson.push(
-                new Order(
+                new OrderBookOrder(
                     orderJson,
                     type === OrderBookType.BUY ? OrderType.BUY : OrderType.SELL
                 )
             );
         }
-        return orders;
+        return orderBookOrders;
 
     }
 
@@ -364,12 +365,12 @@ export class BittrexApiClient {
      *
      * @param uuid  The uuid of the order of which we would like to get the detail.
      *
-     * @returns Either a promise of an open order, or an open order if using
+     * @returns Either a promise of an order, or an order if using
      *          the await construct.
      */
-    public async getOrder( uuid: string ): Promise< OpenOrder > {
+    public async getOrder( uuid: string ): Promise< Order > {
 
-        return new OpenOrder( await this.makeRequest(
+        return new Order( await this.makeRequest(
             "/account/getorder",
             [ "uuid", uuid ]
         ) );
@@ -511,6 +512,7 @@ export class BittrexApiClient {
                         bittrexData = JSON.parse( bittrexData.toString() );
                     }
                     catch( error ) {
+                        console.error( error );
                         throw new ResponseParsingError(
                             `An error occurred parsing Bittrex's response. The response was: ${ bittrexData.toString() }`
                         );

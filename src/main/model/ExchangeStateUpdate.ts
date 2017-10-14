@@ -1,5 +1,6 @@
-import { Order } from "./Order";
+import { PlacedOrder } from "./PlacedOrder";
 import { OrderType } from "../enum/OrderType";
+import { Fill } from "./Fill";
 
 /**
  * Represents a single exchange state update.
@@ -8,8 +9,8 @@ export class ExchangeStateUpdate {
 
     private _nounce: number;
     private _name: string;
-    private _placedOrders: Order[];
-    private _fills: Order[];
+    private _placedOrders: PlacedOrder[];
+    private _fills: Fill[];
 
     constructor( json: any ) {
 
@@ -19,18 +20,18 @@ export class ExchangeStateUpdate {
         this._placedOrders = [];
         for( let buyJson of json.Buys ) {
             this._placedOrders.push(
-                new Order( buyJson, OrderType.BUY )
+                new PlacedOrder( buyJson, OrderType.BUY )
             );
         }
         for( let sellJson of json.Sells ) {
             this._placedOrders.push(
-                new Order( sellJson, OrderType.SELL )
+                new PlacedOrder( sellJson, OrderType.SELL )
             );
         }
 
         this._fills = [];
         for( let fillJson of json.Fills ) {
-            this._fills.push( new Order( fillJson ) );
+            this._fills.push( new Fill( fillJson ) );
         }
 
     }
@@ -51,19 +52,19 @@ export class ExchangeStateUpdate {
         this._name = value;
     }
 
-    get placedOrders(): Order[] {
+    get placedOrders(): PlacedOrder[] {
         return this._placedOrders;
     }
 
-    set placedOrders( value: Order[] ) {
+    set placedOrders( value: PlacedOrder[] ) {
         this._placedOrders = value;
     }
 
-    get fills(): Order[] {
+    get fills(): Fill[] {
         return this._fills;
     }
 
-    set fills( value: Order[] ) {
+    set fills( value: Fill[] ) {
         this._fills = value;
     }
 
