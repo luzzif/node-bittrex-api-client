@@ -490,7 +490,7 @@ export class BittrexApiClient {
 
         for( let parameter of parameters ) {
 
-            if( parameter === undefined || parameter === null ) {
+            if( parameter[ 1 ] === undefined || parameter[ 1 ] === null ) {
                 continue;
             }
             apiEndpointUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ] );
