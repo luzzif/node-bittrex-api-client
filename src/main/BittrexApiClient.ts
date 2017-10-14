@@ -400,13 +400,8 @@ export class BittrexApiClient {
                 null,
                 true
             );
-            let cloudflareUserAgent: string = response.request.headers[ "User-Agent" ];
-            let cloudflareCookie: string = response.request.headers[ "cookie" ];
-            if( isNullOrUndefined( cloudflareUserAgent ) || isNullOrUndefined( cloudflareCookie ) ) {
-                throw new CloudscraperError( "returned user agent or cookie is null or undefined" );
-            }
-            websocketClient.headers[ "User-Agent" ] = cloudflareUserAgent;
-            websocketClient.headers[ "cookie" ] = cloudflareCookie;
+            websocketClient.headers[ "User-Agent" ] = response.request.headers[ "User-Agent" ] || "";
+            websocketClient.headers[ "cookie" ] = response.request.headers[ "cookie" ] || "";
 
             websocketClient.serviceHandlers.reconnecting = () => {
                 return false;
