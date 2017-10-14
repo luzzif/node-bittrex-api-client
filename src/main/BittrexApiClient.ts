@@ -428,9 +428,7 @@ export class BittrexApiClient {
                     messageJson = JSON.parse( messageJson.utf8Data );
                 }
                 catch( error ) {
-                    throw new ResponseParsingError(
-                        `An error occurred parsing Bittrex's response. The response was: ${ messageJson }`
-                    );
+                    return;
                 }
                 let updatesJson = messageJson.M;
                 if( updatesJson === undefined || updatesJson.length === 0 ) {
