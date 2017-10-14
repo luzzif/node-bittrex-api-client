@@ -11,7 +11,6 @@ export { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 export { Fill } from "./model/Fill";
 export { Market } from "./model/Market";
 export { MarketSummary } from "./model/MarketSummary";
-export { OpenOrder } from "./model/OpenOrder";
 export { Order } from "./model/Order";
 export { OrderBookOrder } from "./model/OrderBookOrder";
 export { PlacedOrder } from "./model/PlacedOrder";

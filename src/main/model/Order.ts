@@ -44,7 +44,7 @@ export class Order {
         this._pricePerUnit = json.PricePerUnit;
         this._opened = json.Opened !== null ? new Date( json.Opened ) : null;
         this._closed = json.Closed !== null ? new Date( json.Closed ) : null;
-        this._isOpen = json.IsOpen;
+        this._isOpen = json.Closed === null;
         this._sentinel = json.Sentinel;
         this._cancelInitiated = json.CancelInitiated;
         this._immediateOrCancel = json.ImmediateOrCancel;

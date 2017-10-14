@@ -10,7 +10,7 @@ import { OrderBookOrder } from "./model/OrderBookOrder";
 import { OrderBookType } from "./enum/OrderBookType";
 import { Trade } from "./model/Trade";
 import { OrderType } from "./enum/OrderType";
-import { OpenOrder } from "./model/OpenOrder";
+import { Order } from "./model/Order";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
@@ -19,7 +19,6 @@ import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { ResponseParsingError } from "./error/ResponseParsingError";
-import { Order } from "./model/Order";
 
 /**
  * Represents a single Bittrex API client.
@@ -270,15 +269,15 @@ export class BittrexApiClient {
      * @returns Either a promise of an open order array, or an open
      *          order array if using the await construct.
      */
-    public async getOpenOrders( market?: string ): Promise< OpenOrder[] > {
+    public async getOpenOrders( market?: string ): Promise< Order[] > {
 
         let openOrdersJson: any = await this.makeRequest(
             "/market/getopenorders",
             [ "market", market ]
         );
-        let openOrders: OpenOrder[] = [];
+        let openOrders: Order[] = [];
         for( let openOrderJson of openOrdersJson ) {
-            openOrders.push( new OpenOrder( openOrderJson ) );
+            openOrders.push( new Order( openOrderJson ) );
         }
         return openOrders;
 
