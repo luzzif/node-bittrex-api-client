@@ -14,12 +14,11 @@ import { OpenOrder } from "./model/OpenOrder";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
-import { ResponseParsingError } from "./error/ResponseParsingError";
 import { ApiError } from "./error/ApiError";
 import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
-import { IncomingMessage } from "https";
 import { CloudscraperError } from "./error/CloudscraperError";
+import { ResponseParsingError } from "./error/ResponseParsingError";
 
 /**
  * Represents a single Bittrex API client.
