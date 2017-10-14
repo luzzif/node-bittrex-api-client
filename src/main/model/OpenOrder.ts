@@ -35,7 +35,7 @@ export class OpenOrder {
         this._unitPrice = json.PricePerUnit;
         this._opened = new Date( json.Opened );
         this._closed = new Date( json.Closed );
-        this._isOpen = json.IsOpen;
+        this._isOpen = json.IsOpen === true;
         this._cancelInitiated = json.CancelInitiated;
         this._immediateOrCancel = json.ImmediateOrCancel;
         this._conditional = json.IsConditional;
