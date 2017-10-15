@@ -501,28 +501,24 @@ export class BittrexApiClient {
             this.apiSecret
         );
 
-        return new Promise< any >( ( fulfill: ( json: any ) => any ) => {
+        return new Promise< any >( ( fulfill: ( json: any ) => any, reject: ( error: Error ) => any  ) => {
 
             let clientRequest: Https.ClientRequest = Https.request( apiEndpointUrl, ( bittrexResponse: Https.IncomingMessage ): void => {
 
                 bittrexResponse.on( "data", ( bittrexData: any ): void => {
 
+                    bittrexData = bittrexData.toString();
                     try {
-                        bittrexData = JSON.parse( bittrexData.toString() );
+                        bittrexData = JSON.parse( bittrexData );
                     }
-                    catch( error ) {
-                        console.error( error );
-                        throw new ResponseParsingError(
-                            `An error occurred parsing Bittrex's response. The response was: ${ bittrexData.toString() }`
-                        );
+                    catch ( error ) {
+                        reject( new ResponseParsingError( bittrexData ) );
                     }
 
-                    if( bittrexData.success ) {
+                    if ( bittrexData.success ) {
                         fulfill( bittrexData.result );
                     }
-                    else {
-                        throw new ApiError( bittrexData.message );
-                    }
+                    reject( new ApiError( bittrexData.message ) );
 
                 } );
 
