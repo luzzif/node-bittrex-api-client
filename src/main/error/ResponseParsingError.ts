@@ -3,8 +3,8 @@
  */
 export class ResponseParsingError extends Error {
 
-    constructor( message?: string ) {
-        super( message );
+    constructor( response: string ) {
+        super( "An error occurred parsing Bittrex's response: " + response );
     }
 
 }
