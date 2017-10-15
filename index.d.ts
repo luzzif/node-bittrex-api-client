@@ -1,4 +1,5 @@
 export { ConditionType } from "./src/main/enum/ConditionType";
+export { ApiErrorCode } from "./src/main/enum/ApiErrorCode";
 export { FillType } from "./src/main/enum/FillType";
 export { OrderBookType } from "./src/main/enum/OrderBookType";
 export { OrderType } from "./src/main/enum/OrderType";
