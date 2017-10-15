@@ -3,6 +3,8 @@ export { FillType } from "./src/main/enum/FillType";
 export { OrderBookType } from "./src/main/enum/OrderBookType";
 export { OrderType } from "./src/main/enum/OrderType";
 
+export { ApiError } from "./src/main/error/ApiError";
+export { CloudscraperError } from "./src/main/error/CloudscraperError";
 export { ResponseParsingError } from "./src/main/error/ResponseParsingError";
 
 export { Balance } from "./src/main/model/Balance";
