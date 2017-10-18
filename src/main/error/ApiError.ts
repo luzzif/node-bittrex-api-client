@@ -4,8 +4,8 @@ export class ApiError extends Error {
 
     private _apiErrorCode: ApiErrorCode;
 
-    constructor( bittrexError?: string ) {
-        super( "Bittrex's API returned an error. Error is: " + bittrexError );
+    constructor( calledEndpoint: string, bittrexError: string ) {
+        super( "[ " + bittrexError + " ]@[ " + calledEndpoint + " ]"  );
         this._apiErrorCode = ApiErrorCode[ bittrexError ];
     }
 

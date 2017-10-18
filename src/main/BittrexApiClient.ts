@@ -19,6 +19,7 @@ import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { ResponseParsingError } from "./error/ResponseParsingError";
+import { OrderBook } from "./model/OrderBook";
 
 /**
  * Represents a single Bittrex API client.
@@ -151,34 +152,13 @@ export class BittrexApiClient {
      * @returns Either a promise of an order book, or an order book
      *          if using the await construct.
      */
-    public async getOrderBook( market: string, type: OrderBookType ): Promise< OrderBookOrder[] > {
+    public async getOrderBook( market: string, type: OrderBookType ): Promise< OrderBook > {
 
-        let ordersJson: any = await this.makeRequest(
+        return new OrderBook( await this.makeRequest(
             "public/getorderbook",
             [ "market", market ],
-            [ "type", OrderBookType[ type ].toString().toLowerCase() ]
-        );
-        let orderBookOrders: OrderBookOrder[] = [];
-        if( type === OrderBookType.BOTH ) {
-
-            for( let buyOrderJson of ordersJson.buy ) {
-                orderBookOrders.push( new OrderBookOrder( buyOrderJson, OrderType.BUY ) );
-            }
-            for( let sellOrderJson of ordersJson.sell ) {
-                orderBookOrders.push( new OrderBookOrder( sellOrderJson, OrderType.SELL ) );
-            }
-            return orderBookOrders;
-
-        }
-        for( let orderJson of ordersJson ) {
-            ordersJson.push(
-                new OrderBookOrder(
-                    orderJson,
-                    type === OrderBookType.BUY ? OrderType.BUY : OrderType.SELL
-                )
-            );
-        }
-        return orderBookOrders;
+            [ "type", OrderBookType[ type ].toLowerCase() ]
+        ) );
 
     }
 
@@ -496,8 +476,9 @@ export class BittrexApiClient {
             apiEndpointUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ] );
 
         }
+        let apiEndpointUrlString: string = apiEndpointUrl.toString();
         let apiSign: string = CryptoJs.HmacSHA512(
-            apiEndpointUrl.toString(),
+            apiEndpointUrlString,
             this.apiSecret
         );
 
@@ -505,9 +486,14 @@ export class BittrexApiClient {
 
             let clientRequest: Https.ClientRequest = Https.request( apiEndpointUrl, ( bittrexResponse: Https.IncomingMessage ): void => {
 
-                bittrexResponse.on( "data", ( bittrexData: any ): void => {
+                let responseBody: Buffer[] = [];
+                bittrexResponse.on( "data", ( bittrexData: Buffer ): void => {
+                    responseBody.push( bittrexData );
+                } );
 
-                    bittrexData = bittrexData.toString();
+                bittrexResponse.on( "end", () => {
+
+                    let bittrexData: any = Buffer.concat( responseBody ).toString();
                     try {
                         bittrexData = JSON.parse( bittrexData );
                     }
@@ -518,7 +504,7 @@ export class BittrexApiClient {
                     if ( bittrexData.success ) {
                         fulfill( bittrexData.result );
                     }
-                    reject( new ApiError( bittrexData.message ) );
+                    reject( new ApiError( apiEndpointUrlString, bittrexData.message ) );
 
                 } );
 
