@@ -15,6 +15,7 @@ export { Fill } from "./model/Fill";
 export { Market } from "./model/Market";
 export { MarketSummary } from "./model/MarketSummary";
 export { Order } from "./model/Order";
+export { OrderBook } from "./model/OrderBook";
 export { OrderBookOrder } from "./model/OrderBookOrder";
 export { PlacedOrder } from "./model/PlacedOrder";
 export { Ticker } from "./model/Ticker";
