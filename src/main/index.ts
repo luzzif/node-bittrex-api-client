@@ -6,7 +6,7 @@ export { OrderType } from "./enum/OrderType";
 
 export { ApiError } from "./error/ApiError";
 export { CloudscraperError } from "./error/CloudscraperError";
-export { ResponseParsingError } from "./error/ResponseParsingError";
+export { TimeoutError } from "./error/TimeoutError";
 
 export { Balance } from "./model/Balance";
 export { Currency } from "./model/Currency";

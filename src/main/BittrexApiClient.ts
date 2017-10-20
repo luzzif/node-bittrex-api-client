@@ -6,10 +6,8 @@ import { Market } from "./model/Market";
 import { Currency } from "./model/Currency";
 import { Ticker } from "./model/Ticker";
 import { MarketSummary } from "./model/MarketSummary";
-import { OrderBookOrder } from "./model/OrderBookOrder";
 import { OrderBookType } from "./enum/OrderBookType";
 import { Trade } from "./model/Trade";
-import { OrderType } from "./enum/OrderType";
 import { Order } from "./model/Order";
 import { Balance } from "./model/Balance";
 import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
@@ -18,8 +16,8 @@ import { ApiError } from "./error/ApiError";
 import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
-import { ResponseParsingError } from "./error/ResponseParsingError";
 import { OrderBook } from "./model/OrderBook";
+import { TimeoutError } from "./error/TimeoutError";
 
 /**
  * Represents a single Bittrex API client.
@@ -486,6 +484,10 @@ export class BittrexApiClient {
 
             let clientRequest: Https.ClientRequest = Https.request( apiEndpointUrl, ( bittrexResponse: Https.IncomingMessage ): void => {
 
+                if( bittrexResponse.statusCode === 524 ) {
+                    reject( new TimeoutError() );
+                }
+
                 let responseBody: Buffer[] = [];
                 bittrexResponse.on( "data", ( bittrexData: Buffer ): void => {
                     responseBody.push( bittrexData );
@@ -498,7 +500,7 @@ export class BittrexApiClient {
                         bittrexData = JSON.parse( bittrexData );
                     }
                     catch ( error ) {
-                        reject( new ResponseParsingError( bittrexData ) );
+                        return;
                     }
 
                     if ( bittrexData.success ) {
