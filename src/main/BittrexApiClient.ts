@@ -18,6 +18,7 @@ import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { OrderBook } from "./model/OrderBook";
 import { TimeoutError } from "./error/TimeoutError";
+import * as request from "requestretry";
 
 /**
  * Represents a single Bittrex API client.
@@ -480,41 +481,25 @@ export class BittrexApiClient {
             this.apiSecret
         );
 
-        return new Promise< any >( ( fulfill: ( json: any ) => any, reject: ( error: Error ) => any  ) => {
+        let response: any = await request( {
 
-            let clientRequest: Https.ClientRequest = Https.request( apiEndpointUrl, ( bittrexResponse: Https.IncomingMessage ): void => {
-
-                if( bittrexResponse.statusCode === 524 ) {
-                    reject( new TimeoutError() );
-                }
-
-                let responseBody: Buffer[] = [];
-                bittrexResponse.on( "data", ( bittrexData: Buffer ): void => {
-                    responseBody.push( bittrexData );
-                } );
-
-                bittrexResponse.on( "end", () => {
-
-                    let bittrexData: any = Buffer.concat( responseBody ).toString();
-                    try {
-                        bittrexData = JSON.parse( bittrexData );
-                    }
-                    catch ( error ) {
-                        return;
-                    }
-
-                    if ( bittrexData.success ) {
-                        fulfill( bittrexData.result );
-                    }
-                    reject( new ApiError( apiEndpointUrlString, bittrexData.message ) );
-
-                } );
-
-            } );
-            clientRequest.setHeader( "apisign", apiSign );
-            clientRequest.end();
+            url: apiEndpointUrlString,
+            headers: {
+                "apisign": apiSign
+            },
+            json: true,
+            maxAttempts: 10,
+            retryDelay: 2500,
+            retryStrategy: ( error, response ) => {
+                return response.statusCode >= 500 && response.statusCode < 600;
+            },
+            fullResponse: false
 
         } );
+        if( response.success ) {
+            return response.result;
+        }
+        throw new ApiError( apiEndpointUrlString, response.message );
 
     }
 
