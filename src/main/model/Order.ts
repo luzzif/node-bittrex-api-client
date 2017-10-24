@@ -1,5 +1,8 @@
 import { OrderType } from "../enum/OrderType";
 
+/**
+ * Represents a single order.
+ */
 export class Order {
 
     private _accountId: string;

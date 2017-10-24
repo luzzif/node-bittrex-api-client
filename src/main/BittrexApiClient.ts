@@ -1,5 +1,4 @@
 import * as CryptoJs from "crypto-js";
-import * as Https from "https";
 import * as SignalR from "signalr-client";
 import { URL } from "url";
 import { Market } from "./model/Market";
@@ -17,7 +16,6 @@ import * as Path from "path";
 import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { OrderBook } from "./model/OrderBook";
-import { TimeoutError } from "./error/TimeoutError";
 import * as request from "requestretry";
 
 /**
@@ -41,14 +39,9 @@ export class BittrexApiClient {
      * @param apiKey    The personal account API key.
      * @param apiSecret The personal account API secret.
      */
-    constructor( apiKey: string, apiSecret: string ) {
-
-        if( isNullOrUndefined( apiKey ) || isNullOrUndefined( apiSecret ) ) {
-            throw new Error( "API key and API secret cannot be undefined or null" );
-        }
+    constructor( apiKey?: string, apiSecret?: string ) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
-
     }
 
     /**
@@ -105,8 +98,8 @@ export class BittrexApiClient {
     /**
      * Interface to the "public/getmarketsummaries" Bittrex's API operation.
      *
-     * @returns Either a promise of a market array, or a market array
-     *          if using the await construct.
+     * @returns Either a promise of a market summary array, or a market summary
+     *          array if using the await construct.
      */
     public async getMarketSummaries(): Promise< MarketSummary[] > {
 
@@ -144,7 +137,7 @@ export class BittrexApiClient {
      * Interface to the "public/getorderbook" Bittrex's API operation.
      *
      * @param   market The market of which we would like
-     *                 to retrieve t\he order book.
+     *                 to retrieve the order book.
      * @param   type   The type of the order book that we want to
      *                 retrieve, depending on if we want only the
      *                 buys, sells, or both.
@@ -166,7 +159,7 @@ export class BittrexApiClient {
      *
      * @param   market The market of which we would like
      *                 to retrieve the market history.
-     * @returns Either a promise of a market history, or a market history
+     * @returns Either a promise of a trade array, or a trade array
      *          if using the await construct.
      */
     public async getMarketHistory( market: string ): Promise< Trade[] > {
@@ -189,8 +182,8 @@ export class BittrexApiClient {
      * @param   market   The market on which we would like to buy.
      * @param   quantity The quantity that we would like to buy.
      * @param   rate     The price at which we would like to buy.
-     * @returns Either a promise of the placed order's ID, or the placed
-     *          order's ID if using the await construct.
+     * @returns Either a promise of the placed order's identifier, or the placed
+     *          order's identifier if using the await construct.
      */
     public async buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
@@ -209,8 +202,8 @@ export class BittrexApiClient {
      * @param   market   The market on which we would like to sell.
      * @param   quantity The quantity that we would like to sell.
      * @param   rate     The price at which we would like to sell.
-     * @returns Either a promise of the placed order's ID, or the placed
-     *          order's ID if using the await construct.
+     * @returns Either a promise of the placed order's identifier, or the placed
+     *          order's identifier if using the await construct.
      */
     public async sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
 
@@ -442,8 +435,8 @@ export class BittrexApiClient {
 
     /**
      * Utility method that sends a request to the Bittrex's API, handling the
-     * authentication through the API key and API secret given when instantiating
-     * the client itself.
+     * authentication through the API key and API secret possibly given when
+     * instantiating the client itself.
      *
      * @param operation The Bittrex's API operation that we would like to call.
      * @param parameters The parameters which the operation takes in.
@@ -458,10 +451,15 @@ export class BittrexApiClient {
             "https://www.bittrex.com/"
         );
 
-        apiEndpointUrl.searchParams.append(
-            "apikey",
-            this.apiKey
-        );
+        if( !isNullOrUndefined( this.apiKey ) ) {
+
+            apiEndpointUrl.searchParams.append(
+                "apikey",
+                this.apiKey
+            );
+
+        }
+
         apiEndpointUrl.searchParams.append(
             "nonce",
             new Date().getTime().toString()
@@ -469,7 +467,7 @@ export class BittrexApiClient {
 
         for( let parameter of parameters ) {
 
-            if( parameter[ 1 ] === undefined || parameter[ 1 ] === null ) {
+            if( isNullOrUndefined( parameter[ 1 ] ) ) {
                 continue;
             }
             apiEndpointUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ] );
@@ -499,7 +497,7 @@ export class BittrexApiClient {
         if( response.success ) {
             return response.result;
         }
-        throw new ApiError( apiEndpointUrlString, response.message );
+        throw new ApiError( response.message );
 
     }
 

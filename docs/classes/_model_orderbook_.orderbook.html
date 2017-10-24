@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ResponseParsingError | bittrex-api-client</title>
+	<title>OrderBook | bittrex-api-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_error_responseparsingerror_.html">&quot;error/ResponseParsingError&quot;</a>
+					<a href="../modules/_model_orderbook_.html">&quot;model/OrderBook&quot;</a>
 				</li>
 				<li>
-					<a href="_error_responseparsingerror_.responseparsingerror.html">ResponseParsingError</a>
+					<a href="_model_orderbook_.orderbook.html">OrderBook</a>
 				</li>
 			</ul>
-			<h1>Class ResponseParsingError</h1>
+			<h1>Class OrderBook</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Thrown on Bittrex&#39;s response parsing error.</p>
+						<p>Represents a single order book.</p>
 					</div>
 				</div>
 			</section>
@@ -80,12 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Error</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">ResponseParsingError</span>
-							</li>
-						</ul>
+						<span class="target">OrderBook</span>
 					</li>
 				</ul>
 			</section>
@@ -96,16 +91,21 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_error_responseparsingerror_.responseparsingerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_model_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_orderbook_.orderbook.html#_buys" class="tsd-kind-icon">_buys</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_orderbook_.orderbook.html#_sells" class="tsd-kind-icon">_sells</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Properties</h3>
+							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="_error_responseparsingerror_.responseparsingerror.html#error" class="tsd-kind-icon">Error</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external"><a href="_error_responseparsingerror_.responseparsingerror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external"><a href="_error_responseparsingerror_.responseparsingerror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external"><a href="_error_responseparsingerror_.responseparsingerror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_orderbook_.orderbook.html#buys" class="tsd-kind-icon">buys</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_orderbook_.orderbook.html#sells" class="tsd-kind-icon">sells</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,71 +117,114 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Response<wbr>Parsing<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_error_responseparsingerror_.responseparsingerror.html" class="tsd-signature-type">ResponseParsingError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Order<wbr>Book<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/error/ResponseParsingError.ts#L4">error/ResponseParsingError.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L11">model/OrderBook.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> message: <span class="tsd-signature-type">string</span></h5>
+									<h5>json: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_error_responseparsingerror_.responseparsingerror.html" class="tsd-signature-type">ResponseParsingError</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_model_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
-					<a name="error" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_buys" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _buys</h3>
+					<div class="tsd-signature tsd-kind-icon">_buys<span class="tsd-signature-symbol">:</span> <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:884</li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L10">model/OrderBook.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="message" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_sells" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _sells</h3>
+					<div class="tsd-signature tsd-kind-icon">_sells<span class="tsd-signature-symbol">:</span> <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Error.message</p>
 						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:874</li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L11">model/OrderBook.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.name</p>
-						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:873</li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="buys" class="tsd-anchor"></a>
+					<h3>buys</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> buys<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> buys<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L34">model/OrderBook.ts:34</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L38">model/OrderBook.ts:38</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.stack</p>
-						<p>Overrides Error.stack</p>
-						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:875</li>
-						</ul>
-					</aside>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="sells" class="tsd-anchor"></a>
+					<h3>sells</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sells<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> sells<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L42">model/OrderBook.ts:42</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/OrderBook.ts#L46">model/OrderBook.ts:46</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="_model_orderbookorder_.orderbookorder.html" class="tsd-signature-type">OrderBookOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -215,8 +258,11 @@
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_enum_ordertype_.html">"enum/<wbr>Order<wbr>Type"</a>
 					</li>
-					<li class="current tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_error_responseparsingerror_.html">"error/<wbr>Response<wbr>Parsing<wbr>Error"</a>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_error_apierror_.html">"error/<wbr>Api<wbr>Error"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_error_cloudscrapererror_.html">"error/<wbr>Cloudscraper<wbr>Error"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_balance_.html">"model/<wbr>Balance"</a>
@@ -228,16 +274,25 @@
 						<a href="../modules/_model_exchangestateupdate_.html">"model/<wbr>Exchange<wbr>State<wbr>Update"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_fill_.html">"model/<wbr>Fill"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_market_.html">"model/<wbr>Market"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_marketsummary_.html">"model/<wbr>Market<wbr>Summary"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_model_openorder_.html">"model/<wbr>Open<wbr>Order"</a>
+						<a href="../modules/_model_order_.html">"model/<wbr>Order"</a>
+					</li>
+					<li class="current tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_orderbook_.html">"model/<wbr>Order<wbr>Book"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_model_order_.html">"model/<wbr>Order"</a>
+						<a href="../modules/_model_orderbookorder_.html">"model/<wbr>Order<wbr>Book<wbr>Order"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_placedorder_.html">"model/<wbr>Placed<wbr>Order"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_ticker_.html">"model/<wbr>Ticker"</a>
@@ -252,22 +307,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_error_responseparsingerror_.responseparsingerror.html" class="tsd-kind-icon">Response<wbr>Parsing<wbr>Error</a>
+						<a href="_model_orderbook_.orderbook.html" class="tsd-kind-icon">Order<wbr>Book</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="_error_responseparsingerror_.responseparsingerror.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_model_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
-								<a href="_error_responseparsingerror_.responseparsingerror.html#error" class="tsd-kind-icon">Error</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_model_orderbook_.orderbook.html#_buys" class="tsd-kind-icon">_buys</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_error_responseparsingerror_.responseparsingerror.html#message" class="tsd-kind-icon">message</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_model_orderbook_.orderbook.html#_sells" class="tsd-kind-icon">_sells</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_error_responseparsingerror_.responseparsingerror.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_model_orderbook_.orderbook.html#buys" class="tsd-kind-icon">buys</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_error_responseparsingerror_.responseparsingerror.html#stack" class="tsd-kind-icon">stack</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_model_orderbook_.orderbook.html#sells" class="tsd-kind-icon">sells</a>
 							</li>
 						</ul>
 					</li>

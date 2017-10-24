@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Ticker | bittrex-api-client</title>
+	<title>Fill | bittrex-api-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_model_ticker_.html">&quot;model/Ticker&quot;</a>
+					<a href="../modules/_model_fill_.html">&quot;model/Fill&quot;</a>
 				</li>
 				<li>
-					<a href="_model_ticker_.ticker.html">Ticker</a>
+					<a href="_model_fill_.fill.html">Fill</a>
 				</li>
 			</ul>
-			<h1>Class Ticker</h1>
+			<h1>Class Fill</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a single ticker.</p>
+						<p>Represents a single order fill.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Ticker</span>
+						<span class="target">Fill</span>
 					</li>
 				</ul>
 			</section>
@@ -91,23 +91,23 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_model_ticker_.ticker.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_model_fill_.fill.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_ticker_.ticker.html#_ask" class="tsd-kind-icon">_ask</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_ticker_.ticker.html#_bid" class="tsd-kind-icon">_bid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_ticker_.ticker.html#_last" class="tsd-kind-icon">_last</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_fill_.fill.html#_quantity" class="tsd-kind-icon">_quantity</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_fill_.fill.html#_rate" class="tsd-kind-icon">_rate</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_model_fill_.fill.html#_type" class="tsd-kind-icon">_type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_ticker_.ticker.html#ask" class="tsd-kind-icon">ask</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_ticker_.ticker.html#bid" class="tsd-kind-icon">bid</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_ticker_.ticker.html#last" class="tsd-kind-icon">last</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_fill_.fill.html#quantity" class="tsd-kind-icon">quantity</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_fill_.fill.html#rate" class="tsd-kind-icon">rate</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_model_fill_.fill.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,13 +119,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Ticker<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_ticker_.ticker.html" class="tsd-signature-type">Ticker</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Fill<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_fill_.fill.html" class="tsd-signature-type">Fill</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L8">model/Ticker.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L10">model/Fill.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -133,8 +133,11 @@
 								<li>
 									<h5>json: <span class="tsd-signature-type">any</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> type: <span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span></h5>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_model_ticker_.ticker.html" class="tsd-signature-type">Ticker</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_model_fill_.fill.html" class="tsd-signature-type">Fill</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -142,32 +145,32 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="_ask" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _ask</h3>
-					<div class="tsd-signature tsd-kind-icon">_ask<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="_quantity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _quantity</h3>
+					<div class="tsd-signature tsd-kind-icon">_quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L7">model/Ticker.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L9">model/Fill.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="_bid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _bid</h3>
-					<div class="tsd-signature tsd-kind-icon">_bid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="_rate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _rate</h3>
+					<div class="tsd-signature tsd-kind-icon">_rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L6">model/Ticker.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L10">model/Fill.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="_last" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _last</h3>
-					<div class="tsd-signature tsd-kind-icon">_last<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="_type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _type</h3>
+					<div class="tsd-signature tsd-kind-icon">_type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L8">model/Ticker.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L8">model/Fill.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,17 +178,17 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a name="ask" class="tsd-anchor"></a>
-					<h3>ask</h3>
+					<a name="quantity" class="tsd-anchor"></a>
+					<h3>quantity</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> ask<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> ask<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> quantity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> quantity<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L24">model/Ticker.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L26">model/Fill.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -193,7 +196,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L28">model/Ticker.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L30">model/Fill.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,17 +210,17 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a name="bid" class="tsd-anchor"></a>
-					<h3>bid</h3>
+					<a name="rate" class="tsd-anchor"></a>
+					<h3>rate</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> bid<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> bid<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rate<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L16">model/Ticker.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L34">model/Fill.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -225,7 +228,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L20">model/Ticker.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L38">model/Fill.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -239,31 +242,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a name="last" class="tsd-anchor"></a>
-					<h3>last</h3>
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> last<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> last<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L32">model/Ticker.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L18">model/Fill.ts:18</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderType.BUY</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.SELL</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.LIMIT_BUY</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.LIMIT_SELL</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Ticker.ts#L36">model/Ticker.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/model/Fill.ts#L22">model/Fill.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<h5>value: <span class="tsd-signature-type">OrderType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_SELL</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -317,7 +327,7 @@
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_exchangestateupdate_.html">"model/<wbr>Exchange<wbr>State<wbr>Update"</a>
 					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
+					<li class="current tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_fill_.html">"model/<wbr>Fill"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -338,7 +348,7 @@
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_placedorder_.html">"model/<wbr>Placed<wbr>Order"</a>
 					</li>
-					<li class="current tsd-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_ticker_.html">"model/<wbr>Ticker"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -351,28 +361,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_model_ticker_.ticker.html" class="tsd-kind-icon">Ticker</a>
+						<a href="_model_fill_.fill.html" class="tsd-kind-icon">Fill</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="_model_ticker_.ticker.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_model_fill_.fill.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_model_ticker_.ticker.html#_ask" class="tsd-kind-icon">_ask</a>
+								<a href="_model_fill_.fill.html#_quantity" class="tsd-kind-icon">_quantity</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_model_ticker_.ticker.html#_bid" class="tsd-kind-icon">_bid</a>
+								<a href="_model_fill_.fill.html#_rate" class="tsd-kind-icon">_rate</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_model_ticker_.ticker.html#_last" class="tsd-kind-icon">_last</a>
+								<a href="_model_fill_.fill.html#_type" class="tsd-kind-icon">_type</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-								<a href="_model_ticker_.ticker.html#ask" class="tsd-kind-icon">ask</a>
+								<a href="_model_fill_.fill.html#quantity" class="tsd-kind-icon">quantity</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-								<a href="_model_ticker_.ticker.html#bid" class="tsd-kind-icon">bid</a>
+								<a href="_model_fill_.fill.html#rate" class="tsd-kind-icon">rate</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-								<a href="_model_ticker_.ticker.html#last" class="tsd-kind-icon">last</a>
+								<a href="_model_fill_.fill.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
