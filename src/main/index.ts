@@ -1,12 +1,10 @@
 export { ConditionType } from "./enum/ConditionType";
-export { ApiErrorCode } from "./enum/ApiErrorCode";
 export { FillType } from "./enum/FillType";
 export { OrderBookType } from "./enum/OrderBookType";
 export { OrderType } from "./enum/OrderType";
 
 export { ApiError } from "./error/ApiError";
 export { CloudscraperError } from "./error/CloudscraperError";
-export { TimeoutError } from "./error/TimeoutError";
 
 export { Balance } from "./model/Balance";
 export { Currency } from "./model/Currency";

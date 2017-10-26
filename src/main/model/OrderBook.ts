@@ -2,6 +2,9 @@ import { OrderBookOrder } from "./OrderBookOrder";
 import { isNullOrUndefined } from "util";
 import { OrderType } from "../enum/OrderType";
 
+/**
+ * Represents a single order book.
+ */
 export class OrderBook {
 
     private _buys: OrderBookOrder[];

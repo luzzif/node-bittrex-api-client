@@ -116,6 +116,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getmarketsummary" class="tsd-kind-icon">get<wbr>Market<wbr>Summary</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getmarkets" class="tsd-kind-icon">get<wbr>Markets</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getopenorders" class="tsd-kind-icon">get<wbr>Open<wbr>Orders</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getorder" class="tsd-kind-icon">get<wbr>Order</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getorderbook" class="tsd-kind-icon">get<wbr>Order<wbr>Book</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_bittrexapiclient_.bittrexapiclient.html#getticker" class="tsd-kind-icon">get<wbr>Ticker</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_bittrexapiclient_.bittrexapiclient.html#makerequest" class="tsd-kind-icon">make<wbr>Request</a></li>
@@ -132,13 +133,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Bittrex<wbr>Api<wbr>Client<span class="tsd-signature-symbol">(</span>apiKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiSecret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_bittrexapiclient_.bittrexapiclient.html" class="tsd-signature-type">BittrexApiClient</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Bittrex<wbr>Api<wbr>Client<span class="tsd-signature-symbol">(</span>apiKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, apiSecret<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_bittrexapiclient_.bittrexapiclient.html" class="tsd-signature-type">BittrexApiClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L32">BittrexApiClient.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L34">BittrexApiClient.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -149,7 +150,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>apiKey: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> apiKey: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The personal account API key.</p>
@@ -157,7 +158,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>apiSecret: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> apiSecret: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The personal account API secret.</p>
@@ -178,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L27">BittrexApiClient.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L29">BittrexApiClient.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -193,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L32">BittrexApiClient.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L34">BittrexApiClient.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L212">BittrexApiClient.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L188">BittrexApiClient.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,8 +246,8 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Either a promise of the placed order&#39;s ID, or the placed
-							order&#39;s ID if using the await construct.</p>
+							<p>Either a promise of the placed order&#39;s identifier, or the placed
+							order&#39;s identifier if using the await construct.</p>
 						</li>
 					</ul>
 				</section>
@@ -260,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L250">BittrexApiClient.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L226">BittrexApiClient.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L309">BittrexApiClient.ts:309</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L285">BittrexApiClient.ts:285</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -327,7 +328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L288">BittrexApiClient.ts:288</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L264">BittrexApiClient.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L73">BittrexApiClient.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L70">BittrexApiClient.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L326">BittrexApiClient.ts:326</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L302">BittrexApiClient.ts:302</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -403,13 +404,13 @@
 					<a name="getexchangestateupdatesstream" class="tsd-anchor"></a>
 					<h3>get<wbr>Exchange<wbr>State<wbr>Updates<wbr>Stream</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Exchange<wbr>State<wbr>Updates<wbr>Stream<span class="tsd-signature-symbol">(</span>watchableMarkets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Exchange<wbr>State<wbr>Updates<wbr>Stream<span class="tsd-signature-symbol">(</span>watchableMarkets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L367">BittrexApiClient.ts:367</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L360">BittrexApiClient.ts:360</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +454,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -467,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L189">BittrexApiClient.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L165">BittrexApiClient.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -486,7 +487,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_trade_.trade.html" class="tsd-signature-type">Trade</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Either a promise of a market history, or a market history
+							<p>Either a promise of a trade array, or a trade array
 							if using the await construct.</p>
 						</li>
 					</ul>
@@ -501,7 +502,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L107">BittrexApiClient.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L104">BittrexApiClient.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -510,8 +511,8 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_marketsummary_.marketsummary.html" class="tsd-signature-type">MarketSummary</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Either a promise of a market array, or a market array
-							if using the await construct.</p>
+							<p>Either a promise of a market summary array, or a market summary
+							array if using the await construct.</p>
 						</li>
 					</ul>
 				</section>
@@ -525,7 +526,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L128">BittrexApiClient.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L125">BittrexApiClient.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,7 +560,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L56">BittrexApiClient.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L53">BittrexApiClient.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -577,13 +578,13 @@
 					<a name="getopenorders" class="tsd-anchor"></a>
 					<h3>get<wbr>Open<wbr>Orders</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Open<wbr>Orders<span class="tsd-signature-symbol">(</span>market<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_openorder_.openorder.html" class="tsd-signature-type">OpenOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Open<wbr>Orders<span class="tsd-signature-symbol">(</span>market<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L268">BittrexApiClient.ts:268</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L244">BittrexApiClient.ts:244</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -594,16 +595,49 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>market: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> market: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The market of which we would like to retrieve
 										the open orders.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_openorder_.openorder.html" class="tsd-signature-type">OpenOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Either a promise of an open order array, or an open
 							order array if using the await construct.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getorder" class="tsd-anchor"></a>
+					<h3>get<wbr>Order</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Order<span class="tsd-signature-symbol">(</span>uuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L342">BittrexApiClient.ts:342</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Interface to the &quot;public/getorder&quot; Bittrex&#39;s API operation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>uuid: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The uuid of the order of which we would like to get the detail.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Either a promise of an order, or an order if using
+							the await construct.</p>
 						</li>
 					</ul>
 				</section>
@@ -611,13 +645,13 @@
 					<a name="getorderbook" class="tsd-anchor"></a>
 					<h3>get<wbr>Order<wbr>Book</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Order<wbr>Book<span class="tsd-signature-symbol">(</span>market<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderBookType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderBookType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderBookType.BOTH</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Order<wbr>Book<span class="tsd-signature-symbol">(</span>market<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderBookType.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderBookType.SELL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderBookType.BOTH</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L150">BittrexApiClient.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L147">BittrexApiClient.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -643,7 +677,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_order_.order.html" class="tsd-signature-type">Order</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_model_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Either a promise of an order book, or an order book
 							if using the await construct.</p>
 						</li>
@@ -659,7 +693,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L92">BittrexApiClient.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L89">BittrexApiClient.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -693,14 +727,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L439">BittrexApiClient.ts:439</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L447">BittrexApiClient.ts:447</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Utility method that sends a request to the Bittrex&#39;s API, handling the
-										authentication through the API key and API secret given when instantiating
-									the client itself.</p>
+										authentication through the API key and API secret possibly given when
+									instantiating the client itself.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -734,7 +768,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L232">BittrexApiClient.ts:232</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L208">BittrexApiClient.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -764,8 +798,8 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Either a promise of the placed order&#39;s ID, or the placed
-							order&#39;s ID if using the await construct.</p>
+							<p>Either a promise of the placed order&#39;s identifier, or the placed
+							order&#39;s identifier if using the await construct.</p>
 						</li>
 					</ul>
 				</section>
@@ -779,7 +813,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/6b7308b/src/main/BittrexApiClient.ts#L346">BittrexApiClient.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/bittrex-api-client/blob/46fe957/src/main/BittrexApiClient.ts#L322">BittrexApiClient.ts:322</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -853,7 +887,10 @@
 						<a href="../modules/_enum_ordertype_.html">"enum/<wbr>Order<wbr>Type"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_error_responseparsingerror_.html">"error/<wbr>Response<wbr>Parsing<wbr>Error"</a>
+						<a href="../modules/_error_apierror_.html">"error/<wbr>Api<wbr>Error"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_error_cloudscrapererror_.html">"error/<wbr>Cloudscraper<wbr>Error"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_balance_.html">"model/<wbr>Balance"</a>
@@ -865,16 +902,25 @@
 						<a href="../modules/_model_exchangestateupdate_.html">"model/<wbr>Exchange<wbr>State<wbr>Update"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_fill_.html">"model/<wbr>Fill"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_market_.html">"model/<wbr>Market"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_marketsummary_.html">"model/<wbr>Market<wbr>Summary"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_model_openorder_.html">"model/<wbr>Open<wbr>Order"</a>
+						<a href="../modules/_model_order_.html">"model/<wbr>Order"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_model_order_.html">"model/<wbr>Order"</a>
+						<a href="../modules/_model_orderbook_.html">"model/<wbr>Order<wbr>Book"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_orderbookorder_.html">"model/<wbr>Order<wbr>Book<wbr>Order"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_model_placedorder_.html">"model/<wbr>Placed<wbr>Order"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_model_ticker_.html">"model/<wbr>Ticker"</a>
@@ -935,6 +981,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_bittrexapiclient_.bittrexapiclient.html#getopenorders" class="tsd-kind-icon">get<wbr>Open<wbr>Orders</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_bittrexapiclient_.bittrexapiclient.html#getorder" class="tsd-kind-icon">get<wbr>Order</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_bittrexapiclient_.bittrexapiclient.html#getorderbook" class="tsd-kind-icon">get<wbr>Order<wbr>Book</a>
