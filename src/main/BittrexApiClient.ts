@@ -490,9 +490,7 @@ export class BittrexApiClient {
             json: true,
             maxAttempts: 10,
             retryDelay: 2500,
-            retryStrategy: ( error, response ) => {
-                return response.statusCode >= 500 && response.statusCode < 600;
-            },
+            retryStrategy: request.RetryStrategies.HTTPOrNetworkError,
             fullResponse: false
 
         } );
