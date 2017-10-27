@@ -495,7 +495,7 @@ export class BittrexApiClient {
         if( response.success ) {
             return response.result;
         }
-        throw new ApiError( response.message );
+        throw new ApiError( response );
 
     }
 
