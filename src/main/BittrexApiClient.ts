@@ -489,7 +489,7 @@ export class BittrexApiClient {
             maxAttempts: 10,
             retryDelay: 2500,
             retryStrategy: ( error, response ) => {
-                return error || response.statusCode === 524 || response.statusCode === 503;
+                return error || response.statusCode === 524 || response.statusCode === 504;
             },
             fullResponse: false
 
