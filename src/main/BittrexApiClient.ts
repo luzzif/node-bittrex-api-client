@@ -375,7 +375,23 @@ export class BittrexApiClient {
             websocketClient.headers[ "cookie" ] = response.request.headers[ "cookie" ] || "";
 
             websocketClient.serviceHandlers.reconnecting = () => {
-                return false;
+                return true;
+            };
+
+            websocketClient.serviceHandlers.disconnected = function() {
+                websocketClient.start();
+            };
+
+            websocketClient.serviceHandlers.onerror = function() {
+                websocketClient.start();
+            };
+
+            websocketClient.serviceHandlers.connectionLost = function() {
+                websocketClient.start();
+            };
+
+            websocketClient.serviceHandlers.connectFailed = function() {
+                websocketClient.start();
             };
 
             websocketClient.serviceHandlers.connected = () => {
