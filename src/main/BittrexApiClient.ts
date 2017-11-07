@@ -494,7 +494,8 @@ export class BittrexApiClient {
                     response.statusCode === 524 ||
                     response.statusCode === 504 ||
                     response.statusCode === 522 ||
-                    response.statusCode === 503;
+                    response.statusCode === 503 ||
+                    response.statusCode === 1016;
 
             },
             fullResponse: false
