@@ -3,8 +3,8 @@
  */
 export class ApiError extends Error {
 
-    constructor( response: string ) {
-        super( `Bittrex returned ${ response }`  );
+    constructor( response: any ) {
+        super( `Bittrex returned ${ JSON.stringify( response ) }`  );
     }
 
 }
