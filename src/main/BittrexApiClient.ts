@@ -17,6 +17,7 @@ import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { OrderBook } from "./model/OrderBook";
 import * as request from "requestretry";
+import { RequestRetryError } from "./error/RequestRetryError";
 
 /**
  * Represents a single Bittrex API client.
@@ -495,28 +496,35 @@ export class BittrexApiClient {
             this.apiSecret
         );
 
-        let response: any = await request( {
+        let response: any;
+        try {
 
-            url: apiEndpointUrlString,
-            headers: {
-                "apisign": apiSign
-            },
-            json: true,
-            maxAttempts: 10,
-            retryDelay: 2500,
-            retryStrategy: ( error, response ) => {
+            response = await request( {
 
-                return error ||
-                    response.statusCode === 524 ||
-                    response.statusCode === 504 ||
-                    response.statusCode === 522 ||
-                    response.statusCode === 503 ||
-                    response.statusCode === 1016;
+                url: apiEndpointUrlString,
+                headers: {
+                    "apisign": apiSign
+                },
+                json: true,
+                maxAttempts: 10,
+                retryDelay: 2500,
+                retryStrategy: ( error, response ) => {
 
-            },
-            fullResponse: false
+                    return error ||
+                        response.statusCode === 524 ||
+                        response.statusCode === 504 ||
+                        response.statusCode === 522 ||
+                        response.statusCode === 503 ||
+                        response.statusCode === 1016;
 
-        } );
+                },
+                fullResponse: false
+
+            } );
+        }
+        catch( error ) {
+            throw new RequestRetryError( error );
+        }
         if( response.success ) {
             return response.result;
         }
