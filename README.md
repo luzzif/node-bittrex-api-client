@@ -17,6 +17,5 @@ Please if you like my work consider donating something. Every offer helps me giv
 
 - Bitcoin: ```3JFXQE6mQibmrxoq3YHKqRUHAvmXxuY8r9```
 - Ethereum: ```0x35E2acD3f46B13151BC941daa44785A38F3BD97A```
-- Ethereum classic:
 
 Thank you all <3
