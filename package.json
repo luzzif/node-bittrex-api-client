@@ -16,7 +16,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/luzzif/bittrex-api-client.git"
+        "url": "https://github.com/luzzif/node-bittrex-api-client.git"
     },
     "keywords": [
         "bittrex",
@@ -24,7 +24,7 @@
         "client"
     ],
     "bugs": {
-        "url": "https://github.com/luzzif/bittrex-api-client/issues"
+        "url": "https://github.com/luzzif/node-bittrex-api-client/issues"
     },
     "dependencies": {
         "cloudscraper": "^1.4.1",
