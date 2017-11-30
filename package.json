@@ -33,10 +33,7 @@
         "signalr-client": "^0.0.17"
     },
     "devDependencies": {
-        "@types/mocha": "^2.2.42",
         "@types/node": "^8.0.26",
-        "mocha": "^3.5.0",
-        "ts-node": "^3.3.0",
         "typescript": "^2.5.2"
     }
 }
