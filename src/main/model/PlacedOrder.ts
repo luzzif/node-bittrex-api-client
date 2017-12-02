@@ -5,22 +5,12 @@ import { OrderType } from "../enum/OrderType";
  */
 export class PlacedOrder {
 
-    private _type: OrderType;
     private _quantity: number;
     private _rate: number;
 
     constructor( json: any, type?: OrderType ) {
-        this._type = type === undefined ? OrderType[ json.OrderType as string ] : type;
         this._quantity = json.Quantity;
         this._rate = json.Rate;
-    }
-
-    get type(): OrderType {
-        return this._type;
-    }
-
-    set type( value: OrderType ) {
-        this._type = value;
     }
 
     get quantity(): number {

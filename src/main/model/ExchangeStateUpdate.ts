@@ -7,41 +7,54 @@ import { Fill } from "./Fill";
  */
 export class ExchangeStateUpdate {
 
-    private _nounce: number;
+    private _timestamp: Date;
     private _name: string;
-    private _placedOrders: PlacedOrder[];
-    private _fills: Fill[];
+    private _buyOrders: PlacedOrder[];
+    private _sellOrders: PlacedOrder[];
+    private _buyFills: Fill[];
+    private _sellFills: Fill[];
 
     constructor( json: any ) {
 
-        this._nounce = json.Nounce;
+        this._timestamp = new Date( json.Nounce );
         this._name = json.MarketName;
 
-        this._placedOrders = [];
+        this._buyOrders = [];
         for( let buyJson of json.Buys ) {
-            this._placedOrders.push(
-                new PlacedOrder( buyJson, OrderType.BUY )
+            this._buyOrders.push(
+                new PlacedOrder( buyJson )
             );
         }
+
+        this._sellOrders = [];
         for( let sellJson of json.Sells ) {
-            this._placedOrders.push(
-                new PlacedOrder( sellJson, OrderType.SELL )
+            this._sellOrders.push(
+                new PlacedOrder( sellJson )
             );
         }
 
-        this._fills = [];
+        this._buyFills = [];
+        this._sellFills = [];
         for( let fillJson of json.Fills ) {
-            this._fills.push( new Fill( fillJson ) );
+
+            let fillType: OrderType = OrderType[ fillJson.OrderType as string ];
+            if( fillType === OrderType.BUY || fillType == OrderType.LIMIT_BUY ) {
+                this._buyFills.push( new Fill( fillJson ) );
+            }
+            else if( fillType === OrderType.SELL || fillType == OrderType.LIMIT_SELL ) {
+                this._sellFills.push( new Fill( fillJson ) );
+            }
+
         }
 
     }
 
-    get nounce(): number {
-        return this._nounce;
+    get timestamp(): Date {
+        return this._timestamp;
     }
 
-    set nounce( value: number ) {
-        this._nounce = value;
+    set timestamp( value: Date ) {
+        this._timestamp = value;
     }
 
     get name(): string {
@@ -52,20 +65,36 @@ export class ExchangeStateUpdate {
         this._name = value;
     }
 
-    get placedOrders(): PlacedOrder[] {
-        return this._placedOrders;
+    get buyOrders(): PlacedOrder[] {
+        return this._buyOrders;
     }
 
-    set placedOrders( value: PlacedOrder[] ) {
-        this._placedOrders = value;
+    set buyOrders( value: PlacedOrder[] ) {
+        this._buyOrders = value;
     }
 
-    get fills(): Fill[] {
-        return this._fills;
+    get sellOrders(): PlacedOrder[] {
+        return this._sellOrders;
     }
 
-    set fills( value: Fill[] ) {
-        this._fills = value;
+    set sellOrders( value: PlacedOrder[] ) {
+        this._sellOrders = value;
+    }
+
+    get buyFills(): Fill[] {
+        return this._buyFills;
+    }
+
+    set buyFills( value: Fill[] ) {
+        this._buyFills = value;
+    }
+
+    get sellFills(): Fill[] {
+        return this._sellFills;
+    }
+
+    set sellFills( value: Fill[] ) {
+        this._sellFills = value;
     }
 
 }
