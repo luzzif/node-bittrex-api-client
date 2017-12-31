@@ -10,7 +10,7 @@ The installation step is really straight-forward. Just execute the following com
 ```npm install bittrex-api-client```
 
 ## Documentation
-You can find the documentation to this project [here](https://luzzif.github.io/bittrex-api-client/).
+You can find the documentation to this project [here](https://luzzif.github.io/node-bittrex-api-client/).
 
 ## Donations
 Please if you like my work consider donating something. Every offer helps me giving out the best software!
