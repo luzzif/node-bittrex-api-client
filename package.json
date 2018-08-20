@@ -27,13 +27,13 @@
         "url": "https://github.com/luzzif/node-bittrex-api-client/issues"
     },
     "dependencies": {
-        "cloudscraper": "^1.4.1",
+        "cloudscraper": "^1.5.0",
         "crypto-js": "^3.1.9-1",
-        "requestretry": "^1.12.2",
-        "signalr-client": "^0.0.17"
+        "requestretry": "^2.0.2",
+        "signalr-client": "^0.0.18"
     },
     "devDependencies": {
-        "@types/node": "^8.0.26",
-        "typescript": "^2.5.2"
+        "@types/node": "^10.7.1",
+        "typescript": "^3.0.1"
     }
 }
