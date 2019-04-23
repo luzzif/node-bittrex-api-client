@@ -1,6 +1,6 @@
 {
     "name": "bittrex-api-client",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "description": "A client which can be used to interact with Bittrex's API. Entirely developed in TypeScript.",
     "homepage": "https://github.com/luzzif/bittrex-api-client#readme",
     "author": "luzzif",
