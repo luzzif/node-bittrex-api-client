@@ -33,7 +33,7 @@
         "signalr-client": "^0.0.18"
     },
     "devDependencies": {
-        "@types/node": "^10.7.1",
+        "@types/node": "^10.14.1",
         "typescript": "^3.6.4"
     }
 }
