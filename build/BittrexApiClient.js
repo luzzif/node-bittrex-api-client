@@ -24,7 +24,6 @@ const ExchangeStateUpdate_1 = require("./model/ExchangeStateUpdate");
 const util_1 = require("util");
 const ApiError_1 = require("./error/ApiError");
 const Path = require("path");
-const Cloudscraper = require("cloudscraper");
 const CloudscraperError_1 = require("./error/CloudscraperError");
 const OrderBook_1 = require("./model/OrderBook");
 const request = require("requestretry");
@@ -114,7 +113,10 @@ class BittrexApiClient {
      */
     getMarketSummary(market) {
         return __awaiter(this, void 0, void 0, function* () {
-            return new MarketSummary_1.MarketSummary((yield this.makeRequest("public/getmarketsummary", ["market", market]))[0]);
+            return new MarketSummary_1.MarketSummary((yield this.makeRequest("public/getmarketsummary", [
+                "market",
+                market
+            ]))[0]);
         });
     }
     /**
@@ -236,7 +238,10 @@ class BittrexApiClient {
      */
     getBalance(currency) {
         return __awaiter(this, void 0, void 0, function* () {
-            return new Balance_1.Balance(yield this.makeRequest("/account/getbalance", ["currency", currency]));
+            return new Balance_1.Balance(yield this.makeRequest("/account/getbalance", [
+                "currency",
+                currency
+            ]));
         });
     }
     /**
@@ -249,7 +254,10 @@ class BittrexApiClient {
      */
     getDepositAddress(currency) {
         return __awaiter(this, void 0, void 0, function* () {
-            return (yield this.makeRequest("/account/getdepositaddress", ["currency", currency])).Address;
+            return (yield this.makeRequest("/account/getdepositaddress", [
+                "currency",
+                currency
+            ])).Address;
         });
     }
     /**
@@ -292,13 +300,15 @@ class BittrexApiClient {
      */
     getExchangeStateUpdatesStream(watchableMarkets, callback) {
         let websocketClient;
-        Cloudscraper.get("https://bittrex.com/", (error, response) => {
+        require("cloudscraper").get({ uri: "https://bittrex.com/" }, (error, response) => {
             if (error) {
                 throw new CloudscraperError_1.CloudscraperError(error);
             }
             websocketClient = new SignalR.client("wss://socket.bittrex.com/signalr", ["CoreHub"], null, true);
-            websocketClient.headers["User-Agent"] = response.request.headers["User-Agent"] || "";
-            websocketClient.headers["cookie"] = response.request.headers["cookie"] || "";
+            websocketClient.headers["User-Agent"] =
+                response.request.headers["User-Agent"] || "";
+            websocketClient.headers["cookie"] =
+                response.request.headers["cookie"] || "";
             websocketClient.serviceHandlers.reconnecting = () => {
                 return true;
             };
@@ -381,19 +391,19 @@ class BittrexApiClient {
                 response = yield request({
                     url: apiEndpointUrlString,
                     headers: {
-                        "apisign": apiSign
+                        apisign: apiSign
                     },
                     json: true,
                     maxAttempts: 10,
                     retryDelay: 2500,
                     retryStrategy: (error, response) => {
-                        return error ||
+                        return (error ||
                             response.statusCode === 524 ||
                             response.statusCode === 502 ||
                             response.statusCode === 504 ||
                             response.statusCode === 522 ||
                             response.statusCode === 503 ||
-                            response.statusCode === 1016;
+                            response.statusCode === 1016);
                     },
                     fullResponse: false
                 });
