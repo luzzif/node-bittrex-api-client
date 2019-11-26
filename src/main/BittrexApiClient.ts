@@ -13,17 +13,16 @@ import { ExchangeStateUpdate } from "./model/ExchangeStateUpdate";
 import { isNullOrUndefined } from "util";
 import { ApiError } from "./error/ApiError";
 import * as Path from "path";
-import * as Cloudscraper from "cloudscraper";
 import { CloudscraperError } from "./error/CloudscraperError";
 import { OrderBook } from "./model/OrderBook";
 import * as request from "requestretry";
 import { RequestRetryError } from "./error/RequestRetryError";
+import cloudscraper = require("cloudscraper");
 
 /**
  * Represents a single Bittrex API client.
  */
 export class BittrexApiClient {
-
     /**
      * The personal account's API key.
      */
@@ -40,7 +39,7 @@ export class BittrexApiClient {
      * @param apiKey    The personal account API key.
      * @param apiSecret The personal account API secret.
      */
-    constructor( apiKey?: string, apiSecret?: string ) {
+    constructor(apiKey?: string, apiSecret?: string) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
     }
@@ -51,15 +50,13 @@ export class BittrexApiClient {
      * @returns Either a promise of a market, or a market
      *          if using the await construct.
      */
-    public async getMarkets(): Promise< Market[] > {
-
-        let marketsJson: any = await this.makeRequest( "public/getmarkets" );
+    public async getMarkets(): Promise<Market[]> {
+        let marketsJson: any = await this.makeRequest("public/getmarkets");
         let markets: Market[] = [];
-        for( let marketJson of marketsJson ) {
-            markets.push( new Market( marketJson ) );
+        for (let marketJson of marketsJson) {
+            markets.push(new Market(marketJson));
         }
         return markets;
-
     }
 
     /**
@@ -68,15 +65,15 @@ export class BittrexApiClient {
      * @returns Either a promise of a currency array, or a currency array
      *          if using the await construct.
      */
-    public async getCurrencies(): Promise< Currency[] > {
-
-        let currenciesJson: any = await this.makeRequest( "public/getcurrencies" );
+    public async getCurrencies(): Promise<Currency[]> {
+        let currenciesJson: any = await this.makeRequest(
+            "public/getcurrencies"
+        );
         let currencies: Currency[] = [];
-        for( let currencyJson of currenciesJson ) {
-            currencies.push( new Currency( currencyJson ) );
+        for (let currencyJson of currenciesJson) {
+            currencies.push(new Currency(currencyJson));
         }
         return currencies;
-
     }
 
     /**
@@ -87,13 +84,10 @@ export class BittrexApiClient {
      * @returns Either a promise of a ticker, or a ticker
      *          if using the await construct.
      */
-    public async getTicker( market: string ): Promise< Ticker > {
-
-        return new Ticker( await this.makeRequest(
-            "public/getticker",
-            [ "market", market ]
-        ) );
-
+    public async getTicker(market: string): Promise<Ticker> {
+        return new Ticker(
+            await this.makeRequest("public/getticker", ["market", market])
+        );
     }
 
     /**
@@ -102,17 +96,15 @@ export class BittrexApiClient {
      * @returns Either a promise of a market summary array, or a market summary
      *          array if using the await construct.
      */
-    public async getMarketSummaries(): Promise< MarketSummary[] > {
-
+    public async getMarketSummaries(): Promise<MarketSummary[]> {
         let marketSummariesJson: any = await this.makeRequest(
-            "public/getmarketsummaries",
+            "public/getmarketsummaries"
         );
         let marketSummaries: MarketSummary[] = [];
-        for( let marketSummaryJson of marketSummariesJson ) {
-            marketSummaries.push( new MarketSummary( marketSummaryJson ) );
+        for (let marketSummaryJson of marketSummariesJson) {
+            marketSummaries.push(new MarketSummary(marketSummaryJson));
         }
         return marketSummaries;
-
     }
 
     /**
@@ -123,15 +115,15 @@ export class BittrexApiClient {
      * @returns Either a promise of a market summary, or a market summary
      *          if using the await construct.
      */
-    public async getMarketSummary( market: string ): Promise< MarketSummary > {
-
+    public async getMarketSummary(market: string): Promise<MarketSummary> {
         return new MarketSummary(
-            ( await this.makeRequest(
-                "public/getmarketsummary",
-                [ "market", market ]
-            ) )[ 0 ]
+            (
+                await this.makeRequest("public/getmarketsummary", [
+                    "market",
+                    market
+                ])
+            )[0]
         );
-
     }
 
     /**
@@ -145,14 +137,17 @@ export class BittrexApiClient {
      * @returns Either a promise of an order book, or an order book
      *          if using the await construct.
      */
-    public async getOrderBook( market: string, type: OrderBookType ): Promise< OrderBook > {
-
-        return new OrderBook( await this.makeRequest(
-            "public/getorderbook",
-            [ "market", market ],
-            [ "type", OrderBookType[ type ].toLowerCase() ]
-        ) );
-
+    public async getOrderBook(
+        market: string,
+        type: OrderBookType
+    ): Promise<OrderBook> {
+        return new OrderBook(
+            await this.makeRequest(
+                "public/getorderbook",
+                ["market", market],
+                ["type", OrderBookType[type].toLowerCase()]
+            )
+        );
     }
 
     /**
@@ -163,18 +158,16 @@ export class BittrexApiClient {
      * @returns Either a promise of a trade array, or a trade array
      *          if using the await construct.
      */
-    public async getMarketHistory( market: string ): Promise< Trade[] > {
-
+    public async getMarketHistory(market: string): Promise<Trade[]> {
         let tradesJson: any = await this.makeRequest(
             "/public/getmarkethistory",
-            [ "market", market ]
+            ["market", market]
         );
         let trades: Trade[] = [];
-        for( let tradeJson of tradesJson ) {
-            trades.push( new Trade( tradeJson ) );
+        for (let tradeJson of tradesJson) {
+            trades.push(new Trade(tradeJson));
         }
         return trades;
-
     }
 
     /**
@@ -186,15 +179,19 @@ export class BittrexApiClient {
      * @returns Either a promise of the placed order's identifier, or the placed
      *          order's identifier if using the await construct.
      */
-    public async buyWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
-
-        return ( await this.makeRequest(
-            "/market/buylimit",
-            [ "market", market ],
-            [ "quantity", quantity.toString() ],
-            [ "rate", rate.toString() ]
-        ) ).uuid;
-
+    public async buyWithLimit(
+        market: string,
+        quantity: number,
+        rate: number
+    ): Promise<string> {
+        return (
+            await this.makeRequest(
+                "/market/buylimit",
+                ["market", market],
+                ["quantity", quantity.toString()],
+                ["rate", rate.toString()]
+            )
+        ).uuid;
     }
 
     /**
@@ -206,15 +203,19 @@ export class BittrexApiClient {
      * @returns Either a promise of the placed order's identifier, or the placed
      *          order's identifier if using the await construct.
      */
-    public async sellWithLimit( market: string, quantity: number, rate: number ): Promise< string > {
-
-        return ( await this.makeRequest(
-            "/market/selllimit",
-            [ "market", market ],
-            [ "quantity", quantity.toString() ],
-            [ "rate", rate.toString() ]
-        ) ).uuid;
-
+    public async sellWithLimit(
+        market: string,
+        quantity: number,
+        rate: number
+    ): Promise<string> {
+        return (
+            await this.makeRequest(
+                "/market/selllimit",
+                ["market", market],
+                ["quantity", quantity.toString()],
+                ["rate", rate.toString()]
+            )
+        ).uuid;
     }
 
     /**
@@ -224,14 +225,9 @@ export class BittrexApiClient {
      * @returns True if the operation resulted in a success, throws
      *          otherwise.
      */
-    public async cancelOrder( orderId: string ): Promise< boolean > {
-
-        await this.makeRequest(
-            "/market/cancel",
-            [ "uuid", orderId ]
-        );
+    public async cancelOrder(orderId: string): Promise<boolean> {
+        await this.makeRequest("/market/cancel", ["uuid", orderId]);
         return true;
-
     }
 
     /**
@@ -242,18 +238,16 @@ export class BittrexApiClient {
      * @returns Either a promise of an open order array, or an open
      *          order array if using the await construct.
      */
-    public async getOpenOrders( market?: string ): Promise< Order[] > {
-
+    public async getOpenOrders(market?: string): Promise<Order[]> {
         let openOrdersJson: any = await this.makeRequest(
             "/market/getopenorders",
-            [ "market", market ]
+            ["market", market]
         );
         let openOrders: Order[] = [];
-        for( let openOrderJson of openOrdersJson ) {
-            openOrders.push( new Order( openOrderJson ) );
+        for (let openOrderJson of openOrdersJson) {
+            openOrders.push(new Order(openOrderJson));
         }
         return openOrders;
-
     }
 
     /**
@@ -262,17 +256,13 @@ export class BittrexApiClient {
      * @returns Either a promise of a balance array, or a balance
      *          array if using the await construct.
      */
-    public async getBalances(): Promise< Balance[] > {
-
-        let balancesJson: any = await this.makeRequest(
-            "/account/getbalances",
-        );
+    public async getBalances(): Promise<Balance[]> {
+        let balancesJson: any = await this.makeRequest("/account/getbalances");
         let balances: Balance[] = [];
-        for( let balanceJson of balancesJson ) {
-            balances.push( new Balance( balanceJson ) );
+        for (let balanceJson of balancesJson) {
+            balances.push(new Balance(balanceJson));
         }
         return balances;
-
     }
 
     /**
@@ -283,13 +273,13 @@ export class BittrexApiClient {
      * @returns Either a promise of a balance, or a balance if using
      *          the await construct.
      */
-    public async getBalance( currency: string ): Promise< Balance > {
-
-        return new Balance( await this.makeRequest(
-            "/account/getbalance",
-            [ "currency", currency ]
-        ) );
-
+    public async getBalance(currency: string): Promise<Balance> {
+        return new Balance(
+            await this.makeRequest("/account/getbalance", [
+                "currency",
+                currency
+            ])
+        );
     }
 
     /**
@@ -300,13 +290,13 @@ export class BittrexApiClient {
      * @returns Either a promise of a deposit address, or a deposit
      *          address if using the await construct.
      */
-    public async getDepositAddress( currency: string ): Promise< string > {
-
-        return ( await this.makeRequest(
-            "/account/getdepositaddress",
-            [ "currency", currency ]
-        ) ).Address;
-
+    public async getDepositAddress(currency: string): Promise<string> {
+        return (
+            await this.makeRequest("/account/getdepositaddress", [
+                "currency",
+                currency
+            ])
+        ).Address;
     }
 
     /**
@@ -320,16 +310,21 @@ export class BittrexApiClient {
      * @returns Either a promise of a withdrawal ID, or a withdrawal ID
      *          if using the await construct.
      */
-    public async withdraw( currency: string, quantity: number, address: string, paymentId?: string ): Promise< string > {
-
-        return ( await this.makeRequest(
-            "/account/withdraw",
-            [ "currency", currency ],
-            [ "quantity", quantity.toString() ],
-            [ "address", address ],
-            [ "paymentId", paymentId ],
-        ) ).uuid;
-
+    public async withdraw(
+        currency: string,
+        quantity: number,
+        address: string,
+        paymentId?: string
+    ): Promise<string> {
+        return (
+            await this.makeRequest(
+                "/account/withdraw",
+                ["currency", currency],
+                ["quantity", quantity.toString()],
+                ["address", address],
+                ["paymentId", paymentId]
+            )
+        ).uuid;
     }
 
     /**
@@ -340,13 +335,10 @@ export class BittrexApiClient {
      * @returns Either a promise of an order, or an order if using
      *          the await construct.
      */
-    public async getOrder( uuid: string ): Promise< Order > {
-
-        return new Order( await this.makeRequest(
-            "/account/getorder",
-            [ "uuid", uuid ]
-        ) );
-
+    public async getOrder(uuid: string): Promise<Order> {
+        return new Order(
+            await this.makeRequest("/account/getorder", ["uuid", uuid])
+        );
     }
 
     /**
@@ -358,96 +350,93 @@ export class BittrexApiClient {
      *                updates about the watched markets are received
      *                from Bittrex.
      */
-    public getExchangeStateUpdatesStream( watchableMarkets: string[], callback: ( marketUpdates: ExchangeStateUpdate[] ) => any ): void {
-
+    public getExchangeStateUpdatesStream(
+        watchableMarkets: string[],
+        callback: (marketUpdates: ExchangeStateUpdate[]) => any
+    ): void {
         let websocketClient: SignalR.client;
-        Cloudscraper.get( "https://bittrex.com/", ( error, response ) => {
-
-            if( error ) {
-                throw new CloudscraperError( error );
-            }
-            websocketClient = new SignalR.client(
-                "wss://socket.bittrex.com/signalr",
-                [ "CoreHub" ],
-                null,
-                true
-            );
-            websocketClient.headers[ "User-Agent" ] = response.request.headers[ "User-Agent" ] || "";
-            websocketClient.headers[ "cookie" ] = response.request.headers[ "cookie" ] || "";
-
-            websocketClient.serviceHandlers.reconnecting = () => {
-                return true;
-            };
-
-            websocketClient.serviceHandlers.disconnected = function() {
-                websocketClient.start();
-            };
-
-            websocketClient.serviceHandlers.onerror = function() {
-                websocketClient.start();
-            };
-
-            websocketClient.serviceHandlers.connectionLost = function() {
-                websocketClient.start();
-            };
-
-            websocketClient.serviceHandlers.connectFailed = function() {
-                websocketClient.start();
-            };
-
-            websocketClient.serviceHandlers.connected = () => {
-
-                for( let watchableMarket of watchableMarkets ) {
-                    websocketClient.call(
-                        "CoreHub",
-                        "SubscribeToExchangeDeltas",
-                        watchableMarket
-                    );
+        require("cloudscraper").get(
+            { uri: "https://bittrex.com/" },
+            (error, response) => {
+                if (error) {
+                    throw new CloudscraperError(error);
                 }
+                websocketClient = new SignalR.client(
+                    "wss://socket.bittrex.com/signalr",
+                    ["CoreHub"],
+                    null,
+                    true
+                );
+                websocketClient.headers["User-Agent"] =
+                    response.request.headers["User-Agent"] || "";
+                websocketClient.headers["cookie"] =
+                    response.request.headers["cookie"] || "";
 
-            };
+                websocketClient.serviceHandlers.reconnecting = () => {
+                    return true;
+                };
 
-            websocketClient.serviceHandlers.messageReceived = ( messageJson: any ): void => {
+                websocketClient.serviceHandlers.disconnected = function() {
+                    websocketClient.start();
+                };
 
-                if( messageJson.type !== "utf8" ) {
-                    return;
-                }
-                try {
-                    messageJson = JSON.parse( messageJson.utf8Data );
-                }
-                catch( error ) {
-                    return;
-                }
-                let updatesJson = messageJson.M;
-                if( updatesJson === undefined || updatesJson.length === 0 ) {
-                    return;
-                }
+                websocketClient.serviceHandlers.onerror = function() {
+                    websocketClient.start();
+                };
 
-                let exchangeStateUpdates: ExchangeStateUpdate[] = [];
-                for( let updateJson of updatesJson ) {
+                websocketClient.serviceHandlers.connectionLost = function() {
+                    websocketClient.start();
+                };
 
-                    if( updateJson.M !== "updateExchangeState" ) {
-                        continue;
-                    }
-                    for( let exchangeStateUpdateJson of updateJson.A ) {
-                        exchangeStateUpdates.push(
-                            new ExchangeStateUpdate(
-                                exchangeStateUpdateJson
-                            )
+                websocketClient.serviceHandlers.connectFailed = function() {
+                    websocketClient.start();
+                };
+
+                websocketClient.serviceHandlers.connected = () => {
+                    for (let watchableMarket of watchableMarkets) {
+                        websocketClient.call(
+                            "CoreHub",
+                            "SubscribeToExchangeDeltas",
+                            watchableMarket
                         );
                     }
+                };
 
-                }
-                if( exchangeStateUpdates.length === 0 ) {
-                    return;
-                }
-                callback( exchangeStateUpdates );
+                websocketClient.serviceHandlers.messageReceived = (
+                    messageJson: any
+                ): void => {
+                    if (messageJson.type !== "utf8") {
+                        return;
+                    }
+                    try {
+                        messageJson = JSON.parse(messageJson.utf8Data);
+                    } catch (error) {
+                        return;
+                    }
+                    let updatesJson = messageJson.M;
+                    if (updatesJson === undefined || updatesJson.length === 0) {
+                        return;
+                    }
 
-            };
-            websocketClient.start();
-
-        } );
-
+                    let exchangeStateUpdates: ExchangeStateUpdate[] = [];
+                    for (let updateJson of updatesJson) {
+                        if (updateJson.M !== "updateExchangeState") {
+                            continue;
+                        }
+                        for (let exchangeStateUpdateJson of updateJson.A) {
+                            exchangeStateUpdates.push(
+                                new ExchangeStateUpdate(exchangeStateUpdateJson)
+                            );
+                        }
+                    }
+                    if (exchangeStateUpdates.length === 0) {
+                        return;
+                    }
+                    callback(exchangeStateUpdates);
+                };
+                websocketClient.start();
+            }
+        );
     }
 
     /**
@@ -461,20 +450,17 @@ export class BittrexApiClient {
      * @returns Either the promise of the Bittrex's API JSON response, or the
      *          JSON response if using the await construct.
      */
-    private async makeRequest( operation: string, ...parameters: [ string, string ][] ): Promise< any > {
-
+    private async makeRequest(
+        operation: string,
+        ...parameters: [string, string][]
+    ): Promise<any> {
         let apiEndpointUrl: URL = new URL(
-            Path.join( "/api/v1.1", operation ),
+            Path.join("/api/v1.1", operation),
             "https://www.bittrex.com/"
         );
 
-        if( !isNullOrUndefined( this.apiKey ) ) {
-
-            apiEndpointUrl.searchParams.append(
-                "apikey",
-                this.apiKey
-            );
-
+        if (!isNullOrUndefined(this.apiKey)) {
+            apiEndpointUrl.searchParams.append("apikey", this.apiKey);
         }
 
         apiEndpointUrl.searchParams.append(
@@ -482,13 +468,11 @@ export class BittrexApiClient {
             new Date().getTime().toString()
         );
 
-        for( let parameter of parameters ) {
-
-            if( isNullOrUndefined( parameter[ 1 ] ) ) {
+        for (let parameter of parameters) {
+            if (isNullOrUndefined(parameter[1])) {
                 continue;
             }
-            apiEndpointUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ] );
-
+            apiEndpointUrl.searchParams.append(parameter[0], parameter[1]);
         }
         let apiEndpointUrlString: string = apiEndpointUrl.toString();
         let apiSign: string = CryptoJs.HmacSHA512(
@@ -498,39 +482,33 @@ export class BittrexApiClient {
 
         let response: any;
         try {
-
-            response = await request( {
-
+            response = await request({
                 url: apiEndpointUrlString,
                 headers: {
-                    "apisign": apiSign
+                    apisign: apiSign
                 },
                 json: true,
                 maxAttempts: 10,
                 retryDelay: 2500,
-                retryStrategy: ( error, response ) => {
-
-                    return error ||
+                retryStrategy: (error, response) => {
+                    return (
+                        error ||
                         response.statusCode === 524 ||
                         response.statusCode === 502 ||
                         response.statusCode === 504 ||
                         response.statusCode === 522 ||
                         response.statusCode === 503 ||
-                        response.statusCode === 1016;
-
+                        response.statusCode === 1016
+                    );
                 },
                 fullResponse: false
-
-            } );
+            });
+        } catch (error) {
+            throw new RequestRetryError(error);
         }
-        catch( error ) {
-            throw new RequestRetryError( error );
-        }
-        if( response.success ) {
+        if (response.success) {
             return response.result;
         }
-        throw new ApiError( response );
-
+        throw new ApiError(response);
     }
-
 }
