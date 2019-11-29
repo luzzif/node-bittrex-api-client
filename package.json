@@ -27,7 +27,7 @@
         "url": "https://github.com/luzzif/node-bittrex-api-client/issues"
     },
     "dependencies": {
-        "cloudscraper": "^4.3.0",
+        "cloudscraper": "^4.4.0",
         "crypto-js": "^3.1.9-1",
         "request": "^2.88.0",
         "requestretry": "^4.0.2",
